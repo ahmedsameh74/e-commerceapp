@@ -1,65 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Contact.css";
 
 export default function Contact() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [tel, setTel] = useState("");
+  const [email, setEmail] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(firstName, lastName, tel, email);
+  };
+
   return (
-    <div className="contact">
-      {/* <h3>Send Us Your Feedback</h3>
-      <form>
-        <label>
-          <span>First name</span>
-          <input type="text" />
-        </label>
-        <label>
-          <span>Last name</span>
-          <input type="text" />
-        </label>
-        <label>
-          <span>Contact tel</span>
-          <input type="tel" />
-        </label>
-        <label>
-          <span>Email</span>
-          <input type="email" />
-        </label>
-        <label>
-          <input type="checkbox" />
-          <span>May we contact you?</span>
-        </label> */}
-      {/* <form className="label">
-        <label htmlFor="lastName">Last name</label>
-        <label htmlFor="Contact">Contact tel.</label>
-        <label htmlFor="email">Email</label>
-      </form>
-      <form className="input">
-        <input type="text" name="lastName" id="lastName" />
-        <input type="tel" name="Contact" id="Contact" />
-        <input type="email" name="email" id="email" />
-      </form> */}
+    <div className="contact" onSubmit={handleSubmit}>
       <h3>Send Us Your Feedback</h3>
       <form>
         <div className="formGroup">
           <label htmlFor="firstName">First name</label>
-          <input type="text" name="firstName" id="firstName" />
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label htmlFor="lastName">Last name</label>
-          <input type="text" name="lastName" id="lastName" />
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            onChange={(e) => setLastName(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label htmlFor="contact">Contact tel.</label>
-          <input type="tel" name="contact" id="contact" />
+          <input
+            type="tel"
+            name="contact"
+            id="contact"
+            onChange={(e) => setTel(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="formGroupc">
+          <input type="checkbox" name="" id="check" />
+          <label htmlFor="check"> May we contact you? </label>
+        </div>
+        <div className="formGroupd">
+          <button>submit</button>
         </div>
       </form>
 
-      <div className="formGroupc">
-        <input type="checkbox" name="" id="check" />
-        <label htmlFor="check"> May we contact you? </label>
-      </div>
       {/* </form> */}
     </div>
   );
