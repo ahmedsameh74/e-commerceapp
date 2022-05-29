@@ -10,16 +10,16 @@ export default function Footer() {
           <h3>Links</h3>
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">Products</a>
+              <Link to="/products">Products</Link>
             </li>
             <li>
-              <a href="#">Cart</a>
+              <Link to="/cart">Cart</Link>
             </li>
             <li>
-              <a href="#">Contact</a>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </div>

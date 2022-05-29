@@ -1,5 +1,58 @@
+.contact{
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        margin: 5% auto;
+}
+.contact h3{
+    margin-bottom: 25px;
+}
 .contact form{
     display: flex;
-    flex-direction: column;
-    width: 80%;
+        flex-direction: column;
+        width: 40%;
+        margin-bottom: 25px;
+        /* margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto; */
+}
+.contact form input{
+    border: 1px solid #777;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    padding: 0;
+    width: 337.400px;
+    height: 21.600px;
+}
+.contact form input:focus-visible{
+    outline: green solid 2px;
+}
+.contact form label{
+    margin-bottom: 10px;
+        padding: 0;
+
+}
+.formGroup{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+        align-items: center;
+}
+.formGroupc{
+    display: flex;
+        flex-direction: row;
+        /* width: 100%; */
+        justify-content: space-around;
+        align-items: center;
+}
+@media (max-width: 750px){
+    .contact form{
+        width: 85%;
+    }
+    .contact form input {
+        width: auto;
+    }
 }
