@@ -66,6 +66,12 @@
     /* margin-bottom: 25px; */
 
 }
+.contact form span {
+    color: red;
+    text-align: center;
+    /* display: block; */
+    margin: 5px;
+}
 
 @media (max-width: 750px){
     .contact form{

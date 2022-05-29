@@ -6,9 +6,20 @@ export default function Contact() {
   const [lastName, setLastName] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(firstName, lastName, tel, email);
+    if (firstName === "" || lastName === "" || tel === "" || email === "") {
+      setError(true);
+      // console.log(error);
+    } else {
+      setError(false);
+      console.log(firstName, lastName, tel, email);
+      setFirstName("");
+      setLastName("");
+      setTel("");
+      setEmail("");
+    }
   };
 
   return (
@@ -22,8 +33,10 @@ export default function Contact() {
             name="firstName"
             id="firstName"
             onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
           />
         </div>
+        {/* {error && <span>enter your first name to submit</span>} */}
         <div className="formGroup">
           <label htmlFor="lastName">Last name</label>
           <input
@@ -31,8 +44,10 @@ export default function Contact() {
             name="lastName"
             id="lastName"
             onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
           />
         </div>
+        {/* {error && <span>enter your last name to submit</span>} */}
         <div className="formGroup">
           <label htmlFor="contact">Contact tel.</label>
           <input
@@ -40,8 +55,10 @@ export default function Contact() {
             name="contact"
             id="contact"
             onChange={(e) => setTel(e.target.value)}
+            value={tel}
           />
         </div>
+        {/* {error && <span>enter your tel to submit</span>} */}
         <div className="formGroup">
           <label htmlFor="email">Email</label>
           <input
@@ -49,8 +66,10 @@ export default function Contact() {
             name="email"
             id="email"
             onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
         </div>
+        {error && <span>complete the missing field before submit</span>}
         <div className="formGroupc">
           <input type="checkbox" name="" id="check" />
           <label htmlFor="check"> May we contact you? </label>
@@ -59,8 +78,6 @@ export default function Contact() {
           <button>submit</button>
         </div>
       </form>
-
-      {/* </form> */}
     </div>
   );
 }
