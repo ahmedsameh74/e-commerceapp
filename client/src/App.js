@@ -2,6 +2,7 @@ import Footer from "./components/footer/Footer";
 import Nav from "./components/nav/Nav";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Contact from "./pages/contact/Contact";
+import Login from "./pages/login/Login";
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
         <Switch>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
         </Switch>
 

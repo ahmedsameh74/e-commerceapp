@@ -49,6 +49,13 @@
             margin-top: -5px;
                 padding: 2px;
 }
+.nav .logLink{
+    text-decoration: none;
+    color: white;
+}
+.nav .logLink i{
+    margin-right: 5px;
+}
 .mob-menu{
     display: none;
 }

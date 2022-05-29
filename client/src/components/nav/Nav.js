@@ -37,8 +37,10 @@ export default function Nav() {
           <i className="fa-solid fa-bars"></i>
         </div>
         <div className="right">
-          <i className="fa-solid fa-right-to-bracket"></i>
-          <span>log in</span>
+          <Link className="logLink" to="/login">
+            <i className="fa-solid fa-right-to-bracket"></i>
+            <span>log in</span>
+          </Link>
         </div>
       </div>
       {showMenu && (
