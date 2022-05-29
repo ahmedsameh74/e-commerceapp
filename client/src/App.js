@@ -1,6 +1,6 @@
 import Footer from "./components/footer/Footer";
 import Nav from "./components/nav/Nav";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Contact from "./pages/contact/Contact";
 import Login from "./pages/login/Login";
 
@@ -9,14 +9,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Nav />
-        <Switch>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/login" element={<Login/>}/>
+        </Routes>
 
         <Footer />
       </BrowserRouter>
