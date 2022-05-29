@@ -3,8 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-
+use App\Order;
 class Customer extends Model
 {
     protected $fillable = [
@@ -18,4 +17,10 @@ class Customer extends Model
     ];
     public $timestamps =false;
 
+
+    // relationship between order and customer
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+    
 }
