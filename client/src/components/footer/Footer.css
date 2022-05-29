@@ -26,7 +26,7 @@
     color: white;
     text-decoration: none;
 }
-.footer .top .address ul li i{
+.footer .top .address ul li svg{
     margin-right: 5px;
 }
 .footer .top .address{
@@ -44,7 +44,7 @@
             height: 185px;
             width: 30%;
 }
-.footer .top .social i{
+.footer .top .social svg{
     margin-right: 10px;
     font-size: 30px;
 }
@@ -64,11 +64,12 @@
     .footer .top h3{
         text-align: center;
         margin-bottom: 5px;
-        margin-top: 5px;
+        margin-top: 10px;
     }
         .footer .top .links ul{
             display: flex;
             flex-direction: row;
+            margin-bottom: 20px;
         }
                 .footer .top .links ul li{
                     margin-left: 5px;
@@ -79,10 +80,10 @@
                     width: 75%;
                 }
                                 .footer .top .address p{
-                                    margin: 10px 0;
+                                    margin: 20px 0;
                                 }
                                                                 .footer .top .address li{
-                                                                    margin: 5px 0;
+                                                                    margin: 10px 0;
                                                                 }
         .footer .top .social{
             width: 100%;

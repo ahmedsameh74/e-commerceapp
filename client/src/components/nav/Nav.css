@@ -31,7 +31,7 @@
 .nav .left ul li{
     margin-right: 20px;
 }
-.nav .left ul li i{
+.nav .left ul li svg{
     margin-right: 5px;
 }
 .nav .left ul li a{
@@ -53,9 +53,10 @@
     text-decoration: none;
     color: white;
 }
-.nav .logLink i{
+.nav .logLink svg{
     margin-right: 5px;
 }
+
 .mob-menu{
     display: none;
 }
