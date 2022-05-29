@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Nav.css";
 import { Link } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,9 +14,27 @@ import {
 
 export default function Nav() {
   const [showMenu, setShowMenu] = useState(false);
-  const handleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  // const handleMenu = (e) => {
+  //   // window.onclick = () => {
+  //   //   if (e.target.tagName === "path" || e.target.tagName === "svg") {
+  //   //     setShowMenu(true);
+  //   //     console.log(showMenu);
+  //   //     console.log(e.target.tagName);
+  //   //   } else {
+  //   //     setShowMenu(!showMenu);
+  //   //   }
+  //   // };
+  //   // setShowMenu(!showMenu);
+  //   console.log(e.target.id);
+  // };
+  useEffect(() => {
+    window.onclick = (e) => {
+      e.target.localName === "path" || e.target.localName === "svg"
+        ? setShowMenu(!showMenu)
+        : setShowMenu(false);
+      // console.log(e.target.localName);
+    };
+  });
   return (
     <>
       <div className="nav">
@@ -51,9 +69,9 @@ export default function Nav() {
             </li>
           </ul>
         </div>
-        <div className="mob-menu" onClick={handleMenu}>
+        <div className="mob-menu">
           {/* <i className="fa-solid fa-bars"></i> */}
-          <FontAwesomeIcon icon={faBars} />
+          <FontAwesomeIcon icon={faBars} id="menu" />
         </div>
         <div className="right">
           <Link className="logLink" to="/login">
