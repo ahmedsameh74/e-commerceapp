@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import ReactDOM from "react-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import Signup from "./pages/signup/Signup";
 // import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons";
 library.add(fab);
 
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
 
         <Footer />
