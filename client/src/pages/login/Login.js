@@ -5,10 +5,18 @@ import "./Login.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    if (email === "" || password === "") {
+      setError(true);
+    } else {
+      setError(false);
+      console.log(email, password);
+      setEmail("");
+      setPassword("");
+    }
   };
   return (
     <div className="login">
@@ -34,6 +42,11 @@ export default function Login() {
             value={password}
           />
         </div>
+        {error && (
+          <span className="error">
+            please complete the missing fields to complete
+          </span>
+        )}
         <span>
           don't have an account? <Link to="/signup">Sign Up</Link>
         </span>

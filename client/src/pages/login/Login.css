@@ -31,6 +31,9 @@
 .login form input{
     background-color: white;
 }
+.login form .error{
+    color: red;
+}
 .login form input:focus-visible, .login form input:focus-within, .login form input:visited, .login form input:active{
     background-color: white !important;
 }
