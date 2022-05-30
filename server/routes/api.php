@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiAuthController;
+use App\Http\Controllers\ApiProductController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,5 +25,8 @@ Route::middleware('auth:api')->group(function () {
 });
 Route::post('/register',[ApiAuthController::class,'register']);
 Route::post('/login',[ApiAuthController::class,'login']);
+Route::get('/categories',[ApiProductController::class,'getCategories']);
+Route::get('/products/{category_id}',[ApiProductController::class,'getProductsByCategory']);
+Route::get('/allproducts',[ApiProductController::class,'getAllProducts']);
 
 

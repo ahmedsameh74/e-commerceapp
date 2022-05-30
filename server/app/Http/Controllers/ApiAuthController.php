@@ -20,7 +20,7 @@ class ApiAuthController extends BaseController
             'phone'=>'required|string',
             'billing_address'=>'required|string',
             'shipping_address'=>'required|string',
-            'image'=>'required|image:jpeg,png,jpg,gif,svg|max:2048'
+            //'image'=>'required|image:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         if ($validator->fails())
         {
@@ -54,12 +54,10 @@ class ApiAuthController extends BaseController
         $response = ['token' => $token,'name'=>$user->name,'email'=>$user->email];
         return  $this->sendResponse($response, 'User register successfully.');
     }
-
-    
     public function login (Request $request) {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6',
+            //'password' => 'required|string|min:6',
         ]);
         if ($validator->fails())
         {
