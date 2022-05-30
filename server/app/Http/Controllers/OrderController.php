@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Order;
 use App\OrderItem;
+use App\PaymentType;
+use App\PaymentCard;
 use Validator;
 use App\Http\Controllers\BaseController as BaseController;
+
 class OrderController extends BaseController
 {
     // store order with order item 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'duration' => 'required|string',
             'total_price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
@@ -30,11 +34,10 @@ class OrderController extends BaseController
             'order_items.*.sku' => 'required|string',
             'order_items.*.color' => 'required|string',
             'order_items.*.size' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            
+
         ]);
-        if ($validator->fails())
-        {
-            return response(['errors'=>$validator->errors()->all()], 422);
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], 422);
         }
         $order = Order::create([
             'duration' => $request['duration'],
@@ -46,7 +49,7 @@ class OrderController extends BaseController
             'order_visa_card_id' => $request['order_visa_card_id'],
             'order_user_id' => $request['order_user_id']
         ]);
-        foreach($request['order_items'] as $order_item){
+        foreach ($request['order_items'] as $order_item) {
             OrderItem::create([
                 'order_id' => $order->id,
                 'qty' => $order_item['qty'],
@@ -55,51 +58,86 @@ class OrderController extends BaseController
                 'sku' => $order_item['sku'],
                 'color' => $order_item['color'],
                 'size' => $order_item['size'],
-            ]); 
-        }   
+            ]);
+        }
 
-    return response(['success'=>'Order created successfully'], 200);
+        return response(['success' => 'Order created successfully'], 200);
     }
-    
+
     // show all order fro cutomer 
-    public function showAllOrder($id){
-        
+    public function showAllOrder($id)
+    {
+
         $order = Order::where('order_user_id', $id)->get();
-        if(!Order::where('order_user_id', $id)->exists()){
-            $response = ["message" =>'Order does not exist'];
+        if (!Order::where('order_user_id', $id)->exists()) {
+            $response = ["message" => 'Order does not exist'];
             return response($response, 422);
         }
         return response($order, 200);
-
     }
     // show all order item for order using order id 
-    public function showOrderItems($id){
-        
-        $order= Order::find($id);
-        if(!$order){
-            $response = ["message" =>'Order does not exist'];
+    public function showOrderItems($id)
+    {
+
+        $order = Order::find($id);
+        if (!$order) {
+            $response = ["message" => 'Order does not exist'];
             return response($response, 422);
         }
         $order_items = OrderItem::where('order_id', $order->id)->get();
-        return response([$order,"order_item"=>$order_items], 200);
+        return response([$order, "order_item" => $order_items], 200);
     }
 
     // delete one order with all related order item
-    public function deleteOrder($id){
+    public function deleteOrder($id)
+    {
         $order = Order::find($id);
-        if(!$order){
-            $response = ["message" =>'Order does not exist'];
+        if (!$order) {
+            $response = ["message" => 'Order does not exist'];
             return response($response, 422);
         }
         $orderItems = OrderItem::where('order_id', $id)->delete();
         echo "hello world ";
         $order->delete();
-        return response(['success'=>'Order deleted successfully'], 200);
+        return response(['success' => 'Order deleted successfully'], 200);
     }
-    
+
+    // show all payment Types 
+    public function showAllPaymentTypes()
+    {
+        $paymentTypes = PaymentType::get();
+        if (!empty($paymentTypes)) {
+            $data = [];
+            foreach ($paymentTypes as $payment_type) {
+                $data[] = [
+                    'id' => $payment_type->id,
+                    'payment_type' => $payment_type->pay_type,
+                ];
+            }
+            $response =  $this->getResponse(1, '', $data);
+        } else {
+            $response =  $this->getResponse(1, 'notFound');
+        }
+        return response($response)->header('Content-Type', 'application/json');
+    }
 
 
-
-
-    
+    // show all visa cards 
+    public function showAllVisaCards()
+    {
+        $visaCards = PaymentCard::get();
+        if (!empty($visaCards)) {
+            $data = [];
+            foreach ($visaCards as $card) {
+                $data[] = [
+                    'id' => $card->id,
+                    'card_name' => $card->crd_name,
+                ];
+            }
+            $response =  $this->getResponse(1, '', $data);
+        } else {
+            $response =  $this->getResponse(1, 'notFound');
+        }
+        return response($response)->header('Content-Type', 'application/json');
+    }
 }
