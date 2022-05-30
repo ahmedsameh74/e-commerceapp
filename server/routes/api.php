@@ -3,8 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiAuthController;
+<<<<<<< HEAD
 use App\Http\Controllers\ApiProductController;
 
+=======
+use App\Http\Controllers\OrderController;
+>>>>>>> b328d7a6b67c25cbb6dd7641060c723da42eb083
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +26,10 @@ use App\Http\Controllers\ApiProductController;
 Route::middleware('auth:api')->group(function () {
     // our routes to be protected will go in here
     Route::post('/logout',[ApiAuthController::class,'logout'])->name('logout.api');
+    Route::post('/order',[OrderController::class,'store']);
+    Route::get('/order/{id}',[OrderController::class,'showAllOrder']);
+    Route::get('/orderDetails/{id}',[OrderController::class,'showOrderItems']);
+    Route::delete('/order/{id}',[OrderController::class,'deleteOrder']);
 });
 Route::post('/register',[ApiAuthController::class,'register']);
 Route::post('/login',[ApiAuthController::class,'login']);
