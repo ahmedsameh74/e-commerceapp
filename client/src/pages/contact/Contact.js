@@ -29,7 +29,6 @@ export default function Contact() {
       setReview("");
     }
   };
-
   return (
     <div className="contact" onSubmit={handleSubmit}>
       <h3>Send Us Your Feedback</h3>
