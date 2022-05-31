@@ -27,13 +27,13 @@ class OrderController extends BaseController
             'order_user_id' => 'required|integer',
 
             // order item validation 
-            'order_items' => 'required|array',
-            'order_items.*.qty' => 'required|integer',
-            'order_items.*.price' => 'required|integer',
-            'order_items.*.name' => 'required|string',
-            'order_items.*.sku' => 'required|string',
-            'order_items.*.color' => 'required|string',
-            'order_items.*.size' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            // 'order_items' => 'required|array',
+            // 'order_items.*.qty' => 'required|integer',
+            // 'order_items.*.price' => 'required|integer',
+            // 'order_items.*.name' => 'required|string',
+            // 'order_items.*.sku' => 'required|string',
+            // 'order_items.*.color' => 'required|string',
+            // 'order_items.*.size' => 'required|regex:/^\d+(\.\d{1,2})?$/',
 
         ]);
         if ($validator->fails()) {
@@ -49,6 +49,8 @@ class OrderController extends BaseController
             'order_visa_card_id' => $request['order_visa_card_id'],
             'order_user_id' => $request['order_user_id']
         ]);
+
+        var_dump($request['order_items']);
         foreach ($request['order_items'] as $order_item) {
             OrderItem::create([
                 'order_id' => $order->id,
