@@ -7,31 +7,32 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   // let data = { email, password };
-  const data = {
-    email: email,
-    password: password,
-  };
-  useEffect(() => {
-    fetch("https://ecommerceapp0040.herokuapp.com/api/login", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.message === "User login successfully.") {
-          console.log("first");
-        } else {
-          console.log("failed");
-        }
-      });
-  }, [data]);
+  // const data = {
+  //   email: email,
+  //   password: password,
+  // };
+  // useEffect(() => {
+  //   fetch("https://ecommerceapp0040.herokuapp.com/api/login", {
+  //     method: "POST",
+  //     body: JSON.stringify(data),
+  //     headers: { "Content-Type": "application/json" },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       if (json.message === "User login successfully.") {
+  //         console.log("first");
+  //       } else {
+  //         console.log("failed");
+  //       }
+  //     });
+  // }, [data]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
       setError(true);
     } else {
+      console.log(email, password);
       setError(false);
       setEmail("");
       setPassword("");
