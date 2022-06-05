@@ -12,7 +12,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+}
+.show-category h1{
+    text-align: center;
 }
 .heading{
     margin: 20px;
