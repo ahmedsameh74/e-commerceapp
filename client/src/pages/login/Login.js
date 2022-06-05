@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
@@ -6,6 +6,26 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  // let data = { email, password };
+  const data = {
+    email: email,
+    password: password,
+  };
+  useEffect(() => {
+    fetch("https://ecommerceapp0040.herokuapp.com/api/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.message === "User login successfully.") {
+          console.log("first");
+        } else {
+          console.log("failed");
+        }
+      });
+  }, [data]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,11 +33,11 @@ export default function Login() {
       setError(true);
     } else {
       setError(false);
-      console.log(email, password);
       setEmail("");
       setPassword("");
     }
   };
+
   return (
     <div className="login">
       <form onSubmit={handleSubmit}>
@@ -30,6 +50,7 @@ export default function Login() {
             id="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            style={{ outline: error ? "red solid 1px" : "" }}
           />
         </div>
         <div className="formControl">
@@ -40,6 +61,7 @@ export default function Login() {
             id="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            style={{ outline: error ? "red solid 1px" : "" }}
           />
         </div>
         {error && (
