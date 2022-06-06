@@ -18,6 +18,10 @@
     border-radius: 8px;
 }
 
+.error{
+    border: 0.5px solid red;
+}
+
 .signup form h2 {
     text-align: center;
     margin-bottom: 25px;
@@ -36,7 +40,7 @@
     background-color: white;
 }
 
-.signup form .error {
+.signup form .errorMsg {
     color: red;
 }
 

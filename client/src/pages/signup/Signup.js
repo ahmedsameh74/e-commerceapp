@@ -2,25 +2,21 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Signup.css";
 
+const isEmail = (value) => value.trim() !== "" && value.includes("@" & ".com");
+const isName = (value) => value.trim() !== "";
+const isData = (value) => value !== "" && value.trim().length > 6;
+
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [billingAddress, setBillingAddress] = useState("");
   const [password, setPassword] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
   const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      email === "" ||
-      password === "" ||
-      phone === "" ||
-      name === "" ||
-      billingAddress === "" ||
-      shippingAddress === ""
-    ) {
+    if (isEmail(email) || isName(name) ||isData(password) ||isData(shippingAddress)) {
       setError(true);
     } else {
       setError(false);
@@ -29,7 +25,6 @@ export default function Signup() {
       setPassword("");
       setName("");
       setPhone("");
-      setBillingAddress("");
       setShippingAddress("");
     }
   };
@@ -43,14 +38,14 @@ export default function Signup() {
       <form onSubmit={handleSubmit}>
         <h2>Signup</h2>
         <div className="formControl">
-          <label htmlFor="name">name</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             name=""
             id="name"
             onChange={(e) => setName(e.target.value)}
             value={name}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && 'error'}
           />
         </div>
         <div className="formControl">
@@ -61,7 +56,7 @@ export default function Signup() {
             id="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && 'error'}
           />
         </div>
         <div className="formControl">
@@ -72,7 +67,7 @@ export default function Signup() {
             id="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && 'error'}
           />
         </div>
         <div className="formControl">
@@ -83,20 +78,10 @@ export default function Signup() {
             id="phone"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && 'error'}
           />
         </div>
-        <div className="formControl">
-          <label htmlFor="billing_address">billing address</label>
-          <input
-            type="text"
-            name=""
-            id="billing_address"
-            onChange={(e) => setBillingAddress(e.target.value)}
-            value={billingAddress}
-            style={{ outline: error ? "red solid 1px" : "" }}
-          />
-        </div>
+
         <div className="formControl">
           <label htmlFor="shippingAddress">Shipping Address</label>
           <input
@@ -105,12 +90,12 @@ export default function Signup() {
             id="shippingAddress"
             onChange={(e) => setShippingAddress(e.target.value)}
             value={shippingAddress}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && 'error'}
           />
         </div>
         {error && (
-          <span className="error">
-            please complete the missing fields to complete
+          <span className="errorMsg">
+            Empty or missing fields
           </span>
         )}
         <span>

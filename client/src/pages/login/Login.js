@@ -66,11 +66,11 @@ export default function Login() {
         </div>
         {error && (
           <span className="error">
-            please complete the missing fields to complete
+            Please complete the missing fields to complete
           </span>
         )}
         <span>
-          don't have an account? <Link to="/signup">Sign Up</Link>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
         </span>
         <button>Submit</button>
       </form>
