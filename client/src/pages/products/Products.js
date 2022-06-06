@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Base_URL } from "../../service/BaseUrl";
 
 import "./Products.css";
+import Category from "./../../components/Category/Category";
 
 function Products() {
   const [data, setData] = useState([]);
@@ -23,6 +24,7 @@ function Products() {
 
   return (
     <>
+      <Category />
       <div className="show-category">
         <h1>products</h1>
         <hr />

@@ -8,6 +8,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import Signup from "./pages/signup/Signup";
 import Products from "./pages/products/Products";
+// import Category from "./components/Category/Category";
 // import Data from "./db.json";
 // import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons";
 library.add(fab);
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Nav />
+        {/* <Category /> */}
         {/* <div>{Data.username}</div> */}
         <Routes>
           <Route path="/contact" element={<Contact />} />
