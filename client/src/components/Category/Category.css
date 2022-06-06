@@ -9,6 +9,7 @@
     background-color: #e8e8e8;
      color: black; border: none; 
      border-radius: 5px;
+     cursor: pointer;
     }
     .category-container{margin: 80px;}
     .category-container .show-category {display: flex; }
