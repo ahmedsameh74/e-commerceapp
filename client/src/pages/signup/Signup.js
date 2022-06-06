@@ -2,26 +2,35 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Signup.css";
 
+const isEmailValid = (value) =>
+  value.trim() !== "" && value.includes("@" || ".com");
+const isDataValid = (value) => value.trim() !== "";
+const isPasswordValid = (value) => value.trim() !== "" && value.length > 8;
+
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [billingAddress, setBillingAddress] = useState("");
+  const [formIsValid, setValidForm] = useState(false);
   const [password, setPassword] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
   const [error, setError] = useState(false);
 
+  if (
+    isEmailValid(email) &&
+    isPasswordValid(password) &&
+    isDataValid(phone) &&
+    isDataValid(name) &&
+    isDataValid(shippingAddress)
+  ) {
+    setValidForm(true);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      email === "" ||
-      password === "" ||
-      phone === "" ||
-      name === "" ||
-      billingAddress === "" ||
-      shippingAddress === ""
-    ) {
+    if (!formIsValid) {
       setError(true);
+      return;
     } else {
       setError(false);
       console.log(email, password, name);
@@ -29,7 +38,6 @@ export default function Signup() {
       setPassword("");
       setName("");
       setPhone("");
-      setBillingAddress("");
       setShippingAddress("");
     }
   };
@@ -42,15 +50,16 @@ export default function Signup() {
     <div className="signup">
       <form onSubmit={handleSubmit}>
         <h2>Signup</h2>
+        {error && <span className="errorMSG">Invalid or missing fields</span>}
         <div className="formControl">
-          <label htmlFor="name">name</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             name=""
             id="name"
             onChange={(e) => setName(e.target.value)}
             value={name}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && "error"}
           />
         </div>
         <div className="formControl">
@@ -61,7 +70,7 @@ export default function Signup() {
             id="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && "error"}
           />
         </div>
         <div className="formControl">
@@ -72,7 +81,7 @@ export default function Signup() {
             id="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && "error"}
           />
         </div>
         <div className="formControl">
@@ -83,20 +92,10 @@ export default function Signup() {
             id="phone"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && "error"}
           />
         </div>
-        <div className="formControl">
-          <label htmlFor="billing_address">billing address</label>
-          <input
-            type="text"
-            name=""
-            id="billing_address"
-            onChange={(e) => setBillingAddress(e.target.value)}
-            value={billingAddress}
-            style={{ outline: error ? "red solid 1px" : "" }}
-          />
-        </div>
+
         <div className="formControl">
           <label htmlFor="shippingAddress">Shipping Address</label>
           <input
@@ -105,18 +104,14 @@ export default function Signup() {
             id="shippingAddress"
             onChange={(e) => setShippingAddress(e.target.value)}
             value={shippingAddress}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            className={error && "error"}
           />
         </div>
-        {error && (
-          <span className="error">
-            please complete the missing fields to complete
-          </span>
-        )}
-        <span>
+
+        <span className="registered">
           Already have an account? <Link to="/login">Log In</Link>
         </span>
-        <button>Submit</button>
+        <button style={{ width: "100px" }}>Submit</button>
       </form>
     </div>
   );
