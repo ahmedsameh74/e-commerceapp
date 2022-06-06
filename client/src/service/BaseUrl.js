@@ -1,1 +1,1 @@
-export const Base_URL = 'http://ecommerce-app0040.herokuapp.com/api';
+export const Base_URL = "https://ecommerce-app0040.herokuapp.com/api";

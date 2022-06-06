@@ -6,7 +6,7 @@ import "./Category.css";
 function Category() {
   const [data, setData] = useState([]);
   const apiGet = () => {
-    const apii = fetch("http://ecommerce-app0040.herokuapp.com/api/categories")
+    const apii = fetch("https://ecommerce-app0040.herokuapp.com/api/categories")
       .then((response) => response.json())
       .then((json) => {
         console.log(json.data[0].category_name);
