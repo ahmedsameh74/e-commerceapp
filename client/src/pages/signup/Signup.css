@@ -38,6 +38,7 @@
     background-color: white;
     border-radius: 20px;
     border-width: 0.5px;
+    border-color: #777;
     height: 26px;
     padding:0 10px
 }
@@ -61,7 +62,10 @@
     background: black;
     color: white;
     border-radius: 5px;
-
+    width: 100px;
+}
+.signup form button:disabled{
+    background-color: #777;
 }
 
 .signup form span {

@@ -11,11 +11,11 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [formIsValid, setValidForm] = useState(false);
   const [password, setPassword] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
   const [error, setError] = useState(false);
 
+  let formIsValid = false;
   if (
     isEmailValid(email) &&
     isPasswordValid(password) &&
@@ -23,13 +23,13 @@ export default function Signup() {
     isDataValid(name) &&
     isDataValid(shippingAddress)
   ) {
-    setValidForm(true);
+    formIsValid = true;
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formIsValid) {
-      setError(true);
+      setError(true)
       return;
     } else {
       setError(false);
@@ -60,6 +60,7 @@ export default function Signup() {
             onChange={(e) => setName(e.target.value)}
             value={name}
             className={error && "error"}
+            placeholder="ex: Jane Doe"
           />
         </div>
         <div className="formControl">
@@ -71,6 +72,7 @@ export default function Signup() {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             className={error && "error"}
+            placeholder="example@gmail.com"
           />
         </div>
         <div className="formControl">
@@ -82,6 +84,7 @@ export default function Signup() {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             className={error && "error"}
+            placeholder="********"
           />
         </div>
         <div className="formControl">
@@ -93,6 +96,7 @@ export default function Signup() {
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
             className={error && "error"}
+            placeholder="ex: 012345678"
           />
         </div>
 
@@ -105,13 +109,14 @@ export default function Signup() {
             onChange={(e) => setShippingAddress(e.target.value)}
             value={shippingAddress}
             className={error && "error"}
+            placeholder="Apt, floor no"
           />
         </div>
 
         <span className="registered">
           Already have an account? <Link to="/login">Log In</Link>
         </span>
-        <button style={{ width: "100px" }}>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </form>
     </div>
   );
