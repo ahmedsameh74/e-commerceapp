@@ -1,6 +1,9 @@
 import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { fab } from "@fortawesome/free-brands-svg-icons";
+// import {  } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
@@ -45,18 +48,35 @@ export default function Footer() {
           </ul>
         </div>
         <div className="social">
-          {/* <i className="fa fa-envelope-o"></i> */}
           <Link to="#">
-            <i className="fab fa-facebook" style={{ color: "#2374e1" }}></i>
+            <FontAwesomeIcon
+              icon="fa-brands fa-facebook"
+              size="3x"
+              color="#2374e1"
+            />
           </Link>
           <Link to="#">
-            <i className="fab fa-youtube" style={{ color: "red" }}></i>
+            <FontAwesomeIcon
+              icon="fa-brands fa-youtube"
+              size="3x"
+              color="red"
+            />
           </Link>
           <Link to="#">
-            <i className="fab fa-linkedin" style={{ color: "#0a66c2" }}></i>
+            {/* <i className="fab fa-linkedin" style={{ color: "#0a66c2" }}></i> */}
+            <FontAwesomeIcon
+              icon="fa-brands fa-linkedin"
+              size="3x"
+              color="#0a66c2"
+            />
           </Link>
           <Link to="#">
-            <i className="fab fa-google-plus" style={{ color: "#de5145" }}></i>
+            {/* <i className="fab fa-google-plus" style={{ color: "#de5145" }}></i> */}
+            <FontAwesomeIcon
+              icon="fa-brands fa-google-plus"
+              size="3x"
+              color="#de5145"
+            />
           </Link>
           <Link to="#">
             <i
