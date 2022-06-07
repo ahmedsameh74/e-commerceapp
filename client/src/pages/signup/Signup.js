@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Signup.css";
+import { Signup_URL } from "../../service/BaseUrl";
 
 const isEmailValid = (value) =>
   value.trim() !== "" && value.includes("@" || ".com");
@@ -13,6 +14,7 @@ export default function Signup() {
     password: "",
     phone: "",
     shippingAddress: "",
+    billingAddress: "",
     name: "",
   });
   const handleSubmit = (e) => {
@@ -22,30 +24,33 @@ export default function Signup() {
       !isDataValid(user.password) ||
       !isDataValid(user.phone) ||
       !isDataValid(user.name) ||
-      !isDataValid(user.shippingAddress)
+      !isDataValid(user.shippingAddress) ||
+      !isDataValid(user.billingAddress)
     ) {
       setError(true);
       return;
     } else {
       console.log(user);
       setError(false);
-      fetch("http://ecommerceapp0040.herokuapp.com/api/register", {
+      fetch(Signup_URL, {
         method: "POST",
         body: JSON.stringify({
           name: user.name,
-          password: user.password,
           email: user.email,
+          password: user.password,
           phone: user.phone,
-          shippingAddress: user.shippingAddress,
+          billing_address: user.billingAddress,
+          shipping_address: user.shippingAddress,
         }),
         headers: { "Content-Type": "application/json" },
       })
         .then((res) => res.json())
-        .then((data) => {});
+        .then((data) => console.log(data));
       setUser({
         name: "",
         email: "",
         password: "",
+        billingAddress: "",
         shippingAddress: "",
         phone: "",
       });
@@ -61,11 +66,10 @@ export default function Signup() {
           <input
             type="text"
             name=""
-            style={{ border: error ? '1px solid red ': "" }}
+            style={{ border: error ? "1px solid red " : "" }}
             id="name"
             onChange={(event) => {
               setUser({ ...user, name: event.target.value });
-            
             }}
             value={user.name}
             placeholder="ex: Jane Doe"
@@ -79,10 +83,9 @@ export default function Signup() {
             id="email"
             onChange={(event) => {
               setUser({ ...user, email: event.target.value });
-           
             }}
             value={user.email}
-            style={{ border: error ? '1px solid red ': "" }}
+            style={{ border: error ? "1px solid red " : "" }}
             placeholder="example@gmail.com"
           />
         </div>
@@ -94,10 +97,9 @@ export default function Signup() {
             id="password"
             onChange={(event) => {
               setUser({ ...user, password: event.target.value });
-              
             }}
             value={user.password}
-            style={{ border: error ? '1px solid red ': "" }}
+            style={{ border: error ? "1px solid red " : "" }}
             placeholder="********"
           />
         </div>
@@ -109,14 +111,27 @@ export default function Signup() {
             id="phone"
             onChange={(event) => {
               setUser({ ...user, phone: event.target.value });
-              
             }}
             value={user.phone}
-            style={{ border: error ? '1px solid red ': "" }}
+            style={{ border: error ? "1px solid red " : "" }}
             placeholder="ex: 012345678"
           />
         </div>
 
+        <div className="formControl">
+          <label htmlFor="billingAddress">billing Address</label>
+          <input
+            type="text"
+            name=""
+            id="billingAddress"
+            onChange={(event) => {
+              setUser({ ...user, billingAddress: event.target.value });
+            }}
+            value={user.billingAddress}
+            style={{ border: error ? "1px solid red " : "" }}
+            placeholder="Apt, floor no"
+          />
+        </div>
         <div className="formControl">
           <label htmlFor="shippingAddress">Shipping Address</label>
           <input
@@ -125,10 +140,9 @@ export default function Signup() {
             id="shippingAddress"
             onChange={(event) => {
               setUser({ ...user, shippingAddress: event.target.value });
-             
             }}
             value={user.shippingAddress}
-            style={{ border: error ? '1px solid red ': "" }}
+            style={{ border: error ? "1px solid red " : "" }}
             placeholder="Apt, floor no"
           />
         </div>
