@@ -35,7 +35,7 @@ function Categories() {
               {data.map((res) => (
                 <div className="boxhome">
                   <h2 className="itemTitle">{res.category_name}</h2>
-                  <img src={res.category_image} />
+                  <img src={res.category_image} alt={res.category_name} />
                   {/* <p>{res.product_disc}</p> */}
                   <button
                     style={{ marginTop: 25 }}
