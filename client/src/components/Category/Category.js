@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import "./Category.css";
 // import Category from "./Category";
 import { useNavigate } from "react-router-dom";
+import { Base_URL } from "./../../service/BaseUrl";
 
 function Category() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const apiGet = async () => {
-    await fetch("https://ecommerce-app0040.herokuapp.com/api/categories")
+    await fetch(`${Base_URL}/categories`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json.data[0].category_name);
