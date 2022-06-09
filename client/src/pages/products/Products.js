@@ -4,6 +4,7 @@ import { Base_URL } from "../../service/BaseUrl";
 
 import "./Products.css";
 import Category from "./../../components/Category/Category";
+import { useParams } from "react-router-dom";
 
 function Products() {
   const [data, setData] = useState([]);
@@ -12,15 +13,25 @@ function Products() {
     apiGet();
   }, []);
 
+  let { id } = useParams();
+
   const apiGet = async () => {
-    await fetch(`${Base_URL}/allproducts`)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json.data);
-        setData(json.data);
-      });
+    if (id) {
+      await fetch(`${Base_URL}/products/${id}`)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json.data);
+          setData(json.data);
+        });
+    } else {
+      await fetch(`${Base_URL}/allproducts`)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json.data);
+          setData(json.data);
+        });
+    }
   };
-  // Products();
 
   return (
     <>
