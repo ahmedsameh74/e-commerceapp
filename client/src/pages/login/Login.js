@@ -1,36 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
-import { Base_URL } from "../../service/BaseUrl";
+// import { Base_URL } from "../../service/BaseUrl";
+import { useLogin } from "../../hooks/useLogin";
 
 const isEmailValid = (value) =>
   value.trim() !== "" && value.includes("@" || ".com");
 const isDataValid = (value) => value.trim() !== "";
 
 export default function Login() {
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const { login, error } = useLogin();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isEmailValid(user.email) || !isDataValid(user.password)) {
-      setError(true);
+      // setError(true);
       return;
     } else {
-      console.log(user);
-      setError(false);
-      fetch(`${Base_URL}/login`, {
-        method: "POST",
-        body: JSON.stringify({
-          email: user.email,
-          password: user.password,
-        }),
-        headers: { "Content-Type": "application/json" },
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      // setError(false);
+      login(user.email, user.password);
       setUser({
         email: "",
         password: "",
@@ -68,11 +60,7 @@ export default function Login() {
             style={{ outline: error ? "red solid 1px" : "" }}
           />
         </div>
-        {error && (
-          <span className="error">
-            please complete the missing fields to complete
-          </span>
-        )}
+        {error && <span className="error">{error}</span>}
         <span>
           don't have an account? <Link to="/signup">Sign Up</Link>
         </span>

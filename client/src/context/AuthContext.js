@@ -4,6 +4,8 @@ export const AuthContxt = createContext();
 
 export const authReducer = (state, action) => {
   switch (action.type) {
+    case "SIGNUP":
+      return { ...state, user: action.payload };
     case "LOGIN":
       return { ...state, user: action.payload };
     default:
@@ -15,6 +17,7 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
   });
+  console.log(state);
 
   return (
     <AuthContxt.Provider value={{ ...state, dispatch }}>
