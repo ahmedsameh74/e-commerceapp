@@ -4,10 +4,12 @@ import { Base_URL } from "../../service/BaseUrl";
 
 import "./Products.css";
 import Category from "./../../components/Category/Category";
+import { useCart } from "../../hooks/useCart";
 import { useParams } from "react-router-dom";
 
 function Products() {
   const [data, setData] = useState([]);
+  const { addToCart } = useCart();
 
   let { id } = useParams();
   useEffect(() => {
@@ -31,6 +33,9 @@ function Products() {
         });
     }
   };
+  const handleAddToCart = (res) => {
+    addToCart(res);
+  };
 
   return (
     <>
@@ -46,6 +51,9 @@ function Products() {
                   <h2 className="btn-box">{res.name}</h2>
                   <img src={res.product_image} alt={res.name}></img>
                   <p>{res.product_disc}</p>
+                  {/* test */}
+                  <button onClick={() => handleAddToCart(res)}>+</button>
+                  {/* test */}
                   <button>shop now</button>
                 </div>
               ))}

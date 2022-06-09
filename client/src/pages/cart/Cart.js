@@ -1,5 +1,8 @@
 import "./Cart.css";
+import { useCartContext } from "../../hooks/useCartContext";
 const Cart = () => {
+  const { cart } = useCartContext();
+  console.log(cart);
   return (
     <div className="outerContainer">
       <div className="mainContainer">
