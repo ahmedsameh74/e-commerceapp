@@ -11,9 +11,13 @@ import {
   faBars,
   faRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLogout } from "../../hooks/useLogout";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function Nav() {
   const [showMenu, setShowMenu] = useState(false);
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
   // const handleMenu = (e) => {
   //   // window.onclick = () => {
   //   //   if (e.target.tagName === "path" || e.target.tagName === "svg") {
@@ -73,13 +77,22 @@ export default function Nav() {
           {/* <i className="fa-solid fa-bars"></i> */}
           <FontAwesomeIcon icon={faBars} id="menu" />
         </div>
-        <div className="right">
-          <Link className="logLink" to="/login">
+        {!user && (
+          <div className="right">
+            <Link className="logLink" to="/login">
+              {/* <i className="fa-solid fa-right-to-bracket"></i> */}
+              <FontAwesomeIcon icon={faRightToBracket} />
+              <span>log in</span>
+            </Link>
+          </div>
+        )}
+        {user && (
+          <button className="logout" onClick={logout}>
             {/* <i className="fa-solid fa-right-to-bracket"></i> */}
             <FontAwesomeIcon icon={faRightToBracket} />
-            <span>log in</span>
-          </Link>
-        </div>
+            <span>log out</span>
+          </button>
+        )}
       </div>
       {showMenu && (
         <div className="mob-list">
