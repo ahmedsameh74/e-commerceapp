@@ -9,11 +9,10 @@ import { useParams } from "react-router-dom";
 function Products() {
   const [data, setData] = useState([]);
 
+  let { id } = useParams();
   useEffect(() => {
     apiGet();
-  }, []);
-
-  let { id } = useParams();
+  }, [id]);
 
   const apiGet = async () => {
     if (id) {

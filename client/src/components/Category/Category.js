@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 function Category() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-  const apiGet = () => {
-    const apii = fetch("https://ecommerce-app0040.herokuapp.com/api/categories")
+  const apiGet = async () => {
+    await fetch("https://ecommerce-app0040.herokuapp.com/api/categories")
       .then((response) => response.json())
       .then((json) => {
         console.log(json.data[0].category_name);
@@ -30,7 +30,7 @@ function Category() {
         <div className="show-category">
           {" "}
           {data.map((res) => (
-            <div className="box1">
+            <div className="box1" key={res.id}>
               {" "}
               <button
                 className="btn-box"
