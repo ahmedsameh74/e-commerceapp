@@ -1,6 +1,7 @@
 import React , {useState , useEffect} from 'react';
 import {useParams} from 'react-router';
 import { Link } from 'react-router-dom';
+import { Base_URL } from "../../service/BaseUrl";
 
 
 
@@ -13,30 +14,37 @@ export default function ProductDetails() {
     const [loading ,setLoading] = useState(false);
 
 
-    useEffect (() =>{
-
-         
-        setProductDetails();
+    useEffect (() =>{    
+        apiGet();
     },[]);
+        
 
+    const apiGet = async () => {
+        await fetch(`${Base_URL}/products/${id}`)
+          .then((response) => response.json())
+          .then((json) => {
+            console.log(json.data);
+            setProducts(json.data);
+          });
+      };
 
-    const setProductDetails = async () =>{
-      //  setLoading(true);
-        const response = await fetch(`http://ecommerce-app0040.herokuapp.com/api/products/${id}`).then(response => response.json())
-        .then(json => {
-          console.log(json.data)
-          if(json.data.items == []){
-            setProducts([]);
+//     const setProduct = async () =>{
+//       //  setLoading(true);
+//         const response = await fetch(`http://ecommerce-app0040.herokuapp.com/api/products/${id}`).then(response => response.json())
+//         .then(json => {
+//           console.log(json.data)
+//           if(json.data.message == ''){
+//             setProducts([]);
            
-          }else{
-           
-          }
+//           }else{
+            
+//           }
        
-        })
+//         })
             
    
     
-   }
+//    }
  
 
 
@@ -101,11 +109,11 @@ export default function ProductDetails() {
           <p className='load'>
             {product.product_disc}
           </p>
-          <button className='btn btn-outline-dark px-4 py-2'>
+          {/* <button className='btn btn-outline-dark px-4 py-2'>
             Add to cart
-          </button>
+          </button> */}
           <Link to=" "className='btn btn-dark ms-2 px-3 py-2'>
-          Go to cart
+          Details
           </Link>
         
           {/* <div className ="container py-6">

@@ -6,22 +6,29 @@ export default function Contact() {
   const [lastName, setLastName] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
+  const [review, setReview] = useState("");
   const [error, setError] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName === "" || lastName === "" || tel === "" || email === "") {
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      tel === "" ||
+      email === "" ||
+      review === ""
+    ) {
       setError(true);
       // console.log(error);
     } else {
       setError(false);
-      console.log(firstName, lastName, tel, email);
+      console.log(firstName, lastName, tel, email, review);
       setFirstName("");
       setLastName("");
       setTel("");
       setEmail("");
+      setReview("");
     }
   };
-
   return (
     <div className="contact" onSubmit={handleSubmit}>
       <h3>Send Us Your Feedback</h3>
@@ -67,6 +74,14 @@ export default function Contact() {
             id="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+          />
+        </div>
+        <div className="formGroup">
+          <label htmlFor="review">Your review</label>
+          <textarea
+            id="review"
+            onChange={(e) => setReview(e.target.value)}
+            value={review}
           />
         </div>
         {error && <span>complete the missing field before submit</span>}

@@ -72,6 +72,21 @@
     /* display: block; */
     margin: 5px;
 }
+.contact form textarea{
+        border: 1px solid #777;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            padding: 0;
+            /* width: auto; */
+            height: 130px;
+            background-color: white;
+            resize: none;
+            width: 327.400px;
+            padding: 5px;
+}
+.contact form textarea:focus-visible{
+    outline: green solid 2px;
+}
 
 @media (max-width: 750px){
     .contact form{
@@ -80,4 +95,7 @@
     .contact form input {
         width: auto;
     }
+        .contact form textarea{
+            width: auto;
+        }
 }
