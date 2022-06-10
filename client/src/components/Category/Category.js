@@ -2,11 +2,14 @@
 import React, { useState } from "react";
 import "./Category.css";
 // import Category from "./Category";
+import { useNavigate } from "react-router-dom";
+import { Base_URL } from "./../../service/BaseUrl";
 
 function Category() {
   const [data, setData] = useState([]);
-  const apiGet = () => {
-    const apii = fetch("https://ecommerce-app0040.herokuapp.com/api/categories")
+  const navigate = useNavigate();
+  const apiGet = async () => {
+    await fetch(`${Base_URL}/categories`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json.data[0].category_name);
@@ -28,9 +31,14 @@ function Category() {
         <div className="show-category">
           {" "}
           {data.map((res) => (
-            <div className="box1">
+            <div className="box1" key={res.id}>
               {" "}
-              <button className="btn-box">{res.category_name}</button>
+              <button
+                className="btn-box"
+                onClick={() => navigate(`/products/${res.id}`)}
+              >
+                {res.category_name}
+              </button>
             </div>
           ))}
         </div>

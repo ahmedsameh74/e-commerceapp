@@ -3,23 +3,38 @@ import React, { useEffect, useState } from "react";
 import { Base_URL } from "../../service/BaseUrl";
 import "./Products.css";
 import Category from "./../../components/Category/Category";
+import { useCart } from "../../hooks/useCart";
+import { useParams } from "react-router-dom";
 
 function Products() {
   const [data, setData] = useState([]);
+  const { addToCart } = useCart();
 
+  let { id } = useParams();
   useEffect(() => {
     apiGet();
-  }, []);
+  }, [id]);
 
   const apiGet = async () => {
-    await fetch(`${Base_URL}/allproducts`)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json.data);
-        setData(json.data);
-      });
+    if (id) {
+      await fetch(`${Base_URL}/products/${id}`)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json.data);
+          setData(json.data);
+        });
+    } else {
+      await fetch(`${Base_URL}/allproducts`)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json.data);
+          setData(json.data);
+        });
+    }
   };
-  // Products();
+  const handleAddToCart = (res) => {
+    addToCart(res);
+  };
 
   return (
     <>
@@ -35,6 +50,9 @@ function Products() {
                   <h2 className="btn-box">{res.name}</h2>
                   <img src={res.product_image} alt={res.name}></img>
                   <p>{res.product_disc}</p>
+                  {/* test */}
+                  <button onClick={() => handleAddToCart(res)}>+</button>
+                  {/* test */}
                   <button>shop now</button>
                 </div>
               ))}

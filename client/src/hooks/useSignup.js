@@ -2,33 +2,38 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { Base_URL } from "../service/BaseUrl";
 
-export const useLogin = () => {
+export const useSignup = () => {
   const [error, setError] = useState(null);
   const { dispatch } = useAuthContext();
 
-  const login = async (email, password) => {
+  const signup = async (user) => {
     setError(null);
     try {
-      await fetch(`${Base_URL}/login`, {
+      await fetch(`${Base_URL}/register`, {
         method: "POST",
         body: JSON.stringify({
-          email: email,
-          password: password,
+          name: user.name,
+          email: user.email,
+          password: user.password,
+          phone: user.phone,
+          billing_address: user.billingAddress,
+          shipping_address: user.shippingAddress,
         }),
         headers: { "Content-Type": "application/json" },
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.message === "User login successfully.") {
-            console.log("logged in");
+          if (data.success) {
+            console.log("continue to home page");
             console.log(data);
             // console.log(email, password);
-            let user = { email, password };
+
             // console.log(user);
-            dispatch({ type: "LOGIN", payload: user });
+            // console.log(user);
+            dispatch({ type: "SIGNUP", payload: user });
             setError(null);
           } else {
-            setError("you must sign up first");
+            setError("sign up again later");
             console.log("failed");
           }
         });
@@ -40,5 +45,5 @@ export const useLogin = () => {
     }
   };
 
-  return { login, error };
+  return { signup, error };
 };

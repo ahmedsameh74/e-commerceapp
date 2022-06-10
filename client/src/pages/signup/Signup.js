@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Signup.css";
-import { Base_URL } from "../../service/BaseUrl";
+// import { Base_URL } from "../../service/BaseUrl";
+import { useSignup } from "../../hooks/useSignup";
 
 const isEmailValid = (value) =>
   value.trim() !== "" && value.includes("@" || ".com");
 const isDataValid = (value) => value.trim() !== "";
 
 export default function Signup() {
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
+  const { signup, error } = useSignup();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -27,25 +29,14 @@ export default function Signup() {
       !isDataValid(user.shippingAddress) ||
       !isDataValid(user.billingAddress)
     ) {
-      setError(true);
+      // setError(true);
       return;
     } else {
-      console.log(user);
-      setError(false);
-      fetch(`${Base_URL}/register`, {
-        method: "POST",
-        body: JSON.stringify({
-          name: user.name,
-          email: user.email,
-          password: user.password,
-          phone: user.phone,
-          billing_address: user.billingAddress,
-          shipping_address: user.shippingAddress,
-        }),
-        headers: { "Content-Type": "application/json" },
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      // console.log(user);
+      // setError(false);
+      // console.log(user);
+      signup(user);
+
       setUser({
         name: "",
         email: "",

@@ -49,9 +49,9 @@ function Home() {
         <div className="row">
           <div className="heading">
             {categoriesdata.map((res) => (
-              <div className="boxhome">
+              <div className="boxhome" key={res.id}>
                 <h2 className="itemTitle">{res.category_name}</h2>
-                <img src={res.category_image} />
+                <img src={res.category_image} alt={res.category_name} />
                 {/* <p>{res.product_disc}</p> */}
                 <button
                   style={{ marginTop: 25 }}
@@ -85,7 +85,7 @@ function Home() {
             {productsdata.map((res) => (
               <div className="box">
                 <h2 className="btn-box">{res.name}</h2>
-                <img src={res.product_image}></img>
+                <img src={res.product_image} alt={res.name}></img>
                 <p>{res.product_disc}</p>
                 <button>shop now</button>
               </div>
