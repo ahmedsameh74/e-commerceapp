@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import { Base_URL } from "../../service/BaseUrl";
 import { useNavigate } from "react-router-dom";
 
-import "./Products.css";
+import "./ProductItems.css";
 import {
 
   useParams
 } from "react-router-dom";
 
 
-function Products() {
+function ProductItems() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-
   useEffect(() => {
     apiGet();
   }, []);
@@ -23,21 +22,14 @@ function Products() {
 
   const apiGet = async () => {
 
-    if (id) {
-      await fetch(`${Base_URL}/products/${id}`)
+   
+      await fetch(`${Base_URL}/product/items/${id}`)
         .then((response) => response.json())
         .then((json) => {
           console.log(json.data);
           setData(json.data);
         });
-    } else {
-      await fetch(`${Base_URL}/allproducts`)
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json.data);
-          setData(json.data);
-        });
-    }
+
 
   };
   // Products();
@@ -45,17 +37,17 @@ function Products() {
   return (
     <>
       <div className="show-category">
-        <h2 className="secTitle">PRODUCTS</h2>
+        <h2 className="secTitle">PRODUCT Items</h2>
         <hr />
         <div className="container">
           <div className="row">
             <div className="heading">
               {data.map((res) => (
                 <div className="box">
-                  <h2 className="itemTitle">{res.name}</h2>
-                  <img src={res.product_image}></img>
-                  <p>{res.product_disc}</p>
-                  <button onClick={() => navigate(`/productItems/${res.id}`)}>shop now</button>
+                  <img src={"http://ecommerce-2.s3-website-us-east-1.amazonaws.com/"+res.image1}/>
+                  <p style={{fontSize:19,fontWeight:"bold"}}>{res.sku}</p>
+                  <p style={{fontSize:19,fontWeight:"bold"}}>{res.stock_status}</p>
+                  <button onClick={() => navigate(`/productItemDetails/${res.id}`)}>item Details</button>
                 </div>
               ))}
             </div>
@@ -66,4 +58,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default ProductItems;
