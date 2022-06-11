@@ -15,12 +15,15 @@ import Cart from "./pages/cart/Cart";
 import Search from "./components/search/Search";
 import ProductItemDetails from "./pages/productItemDetails/ProductItemDetails";
 import ProductItems from "./pages/productItems/ProductItems";
+import { useAuthContext } from "./hooks/useAuthContext";
 // import Category from "./components/Category/Category";
 // import Data from "./db.json";
 // import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons";
 library.add(fab);
 
 function App() {
+  const { user } = useAuthContext();
+  console.log(user);
   return (
     <div className="App">
       <BrowserRouter>
@@ -32,11 +35,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          {!user && <Route path="/login" element={<Login />} />}
+          {!user && <Route path="/signup" element={<Signup />} />}
           <Route path="/products/" element={<Products />} />
           <Route path="/products/:id" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
+          {!user && <Route path="/cart" element={<Cart />} />}
           <Route path="/categories" element={<Categories />} />
           <Route path="/productItems/:id" element={<ProductItems />} />
           <Route

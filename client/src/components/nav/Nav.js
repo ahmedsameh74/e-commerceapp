@@ -60,11 +60,13 @@ export default function Nav() {
 
               <Link to="/products">Products</Link>
             </li>
-            <li>
-              {/* <i className="fa-solid fa-cart-shopping"></i> */}
-              <FontAwesomeIcon icon={faCartShopping} />
-              <Link to="/cart">Cart</Link>
-            </li>
+            {user && (
+              <li>
+                {/* <i className="fa-solid fa-cart-shopping"></i> */}
+                <FontAwesomeIcon icon={faCartShopping} />
+                <Link to="/cart">Cart</Link>
+              </li>
+            )}
             <li>
               {/* <i className="fa-solid fa-address-card"></i> */}
               <FontAwesomeIcon icon={faAddressCard} />
