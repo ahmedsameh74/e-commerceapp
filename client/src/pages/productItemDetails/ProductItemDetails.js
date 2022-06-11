@@ -11,11 +11,11 @@ import {
 
 function ProductItemDetails() {
   const [data, setData] = useState([]);
- // const [feed, setFeed]= useState([]);
+  const [feed, setFeed]= useState([]);
 
   useEffect(() => {
     apiGet();
-   // apiPost();
+    apiPost();
   }, []);
 
 
@@ -33,18 +33,18 @@ function ProductItemDetails() {
 
 
   };
-  // const apiPost = async () => {
+  const apiPost = async () => {
 
 
-  //   await fetch(`${Base_URL}/feedback/store`)
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       console.log(json.feed);
-  //       setFeed(json.feed);
-  //     });
+    await fetch(`${Base_URL}/feedback/store`)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json.feed);
+        setFeed(json.feed);
+      });
 
 
-  // };
+  };
 
   // Products();
 
@@ -63,7 +63,16 @@ function ProductItemDetails() {
               <h5 className="itemDetailStyle">QUANTITY :  <span style={{ color: "#165BAA" }}>{data.qty}</span></h5>
             </div>
             <div className="detailsContainerSec2">
-              <h3>Add to cart section will add here</h3>
+              <h3>Add QUANTITY</h3>
+              
+<div class="input-group">
+  <span className="input-group-text"></span>
+  <textarea className="form-control" aria-label="With textarea"></textarea>
+  
+</div>
+<div>
+<button type="button" className="btn btn-secondary btn-lg">Add To Cart</button>
+</div>
             </div>
           </div>
 
