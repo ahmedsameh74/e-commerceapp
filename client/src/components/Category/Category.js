@@ -1,11 +1,15 @@
 /* eslint-disable-next-line */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Category.css";
 // import Category from "./Category";
 import { useNavigate } from "react-router-dom";
 import { Base_URL } from "./../../service/BaseUrl";
 
 function Category() {
+  useEffect(() => {
+    apiGet();
+ 
+  }, []);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const apiGet = async () => {
@@ -16,14 +20,17 @@ function Category() {
         setData(json.data);
         // console.log();
       });
+     
+
   };
+ 
   // apiGet();
 
   return (
     <>
       <div className="category-container">
         <div className="buttons">
-          <h1 className="button" onClick={apiGet}>
+          <h1 className="" >
             {" "}
             enjoy our category{" "}
           </h1>
