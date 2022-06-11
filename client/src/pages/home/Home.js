@@ -89,7 +89,9 @@ function Home() {
                 <h2 className="btn-box">{res.name}</h2>
                 <img src={res.product_image} alt={res.name}></img>
                 <p>{res.product_disc}</p>
-                <button>shop now</button>
+                <button onClick={() => navigate(`/productItems/${res.id}`)}>
+                  shop now
+                </button>
               </div>
             ))}
           </div>

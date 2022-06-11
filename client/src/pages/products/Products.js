@@ -4,15 +4,26 @@ import { Base_URL } from "../../service/BaseUrl";
 import { useNavigate } from "react-router-dom";
 
 import "./Products.css";
+<<<<<<< HEAD
 import {
 
   useParams
 } from "react-router-dom";
 
+=======
+import Category from "./../../components/Category/Category";
+import { useCart } from "../../hooks/useCart";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+>>>>>>> c8027c8e020e3440463eaf6121b1710a1a48d6f5
 
 function Products() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+<<<<<<< HEAD
+=======
+  const { addToCart } = useCart();
+>>>>>>> c8027c8e020e3440463eaf6121b1710a1a48d6f5
 
   useEffect(() => {
     apiGet();
