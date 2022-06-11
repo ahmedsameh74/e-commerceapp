@@ -1,41 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
+// import { Base_URL } from "../../service/BaseUrl";
+import { useLogin } from "../../hooks/useLogin";
+
+const isEmailValid = (value) =>
+  value.trim() !== "" && value.includes("@" || ".com");
+const isDataValid = (value) => value.trim() !== "";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  // let data = { email, password };
-  // const data = {
-  //   email: email,
-  //   password: password,
-  // };
-  // useEffect(() => {
-  //   fetch("https://ecommerceapp0040.herokuapp.com/api/login", {
-  //     method: "POST",
-  //     body: JSON.stringify(data),
-  //     headers: { "Content-Type": "application/json" },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       if (json.message === "User login successfully.") {
-  //         console.log("first");
-  //       } else {
-  //         console.log("failed");
-  //       }
-  //     });
-  // }, [data]);
-
+  // const [error, setError] = useState(false);
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const { login, error } = useLogin();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "" || password === "") {
-      setError(true);
+    if (!isEmailValid(user.email) || !isDataValid(user.password)) {
+      // setError(true);
+      return;
     } else {
-      console.log(email, password);
-      setError(false);
-      setEmail("");
-      setPassword("");
+      // setError(false);
+      login(user.email, user.password);
+      setUser({
+        email: "",
+        password: "",
+      });
     }
   };
 
@@ -49,8 +40,10 @@ export default function Login() {
             type="email"
             name=""
             id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            onChange={(event) => {
+              setUser({ ...user, email: event.target.value });
+            }}
+            value={user.email}
             style={{ outline: error ? "red solid 1px" : "" }}
           />
         </div>
@@ -60,16 +53,14 @@ export default function Login() {
             type="password"
             name=""
             id="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
+            onChange={(event) => {
+              setUser({ ...user, password: event.target.value });
+            }}
+            value={user.password}
             style={{ outline: error ? "red solid 1px" : "" }}
           />
         </div>
-        {error && (
-          <span className="error">
-            please complete the missing fields to complete
-          </span>
-        )}
+        {error && <span className="error">{error}</span>}
         <span>
           don't have an account? <Link to="/signup">Sign Up</Link>
         </span>
