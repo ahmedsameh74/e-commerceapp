@@ -12,6 +12,8 @@ import Products from "./pages/products/Products";
 import Home from "./pages/home/Home";
 import Categories from "./pages/categories/Categories";
 import Cart from "./pages/cart/Cart";
+import ProductItemDetails from "./pages/productItemDetails/ProductItemDetails";
+import ProductItems from "./pages/productItems/ProductItems";
 // import Category from "./components/Category/Category";
 // import Data from "./db.json";
 // import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +35,11 @@ function App() {
           <Route path="/products/:id" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/productItems/:id" element={<ProductItems />} />
+          <Route
+            path="/productItemDetails/:id"
+            element={<ProductItemDetails />}
+          />
         </Routes>
 
         <Footer />

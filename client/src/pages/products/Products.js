@@ -6,9 +6,11 @@ import "./Products.css";
 import Category from "./../../components/Category/Category";
 import { useCart } from "../../hooks/useCart";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
   const { addToCart } = useCart();
 
   let { id } = useParams();
@@ -54,7 +56,10 @@ function Products() {
                   {/* test */}
                   <button onClick={() => handleAddToCart(res)}>+</button>
                   {/* test */}
-                  <button>shop now</button>
+                  <button onClick={() => navigate(`/productItems/${res.id}`)}>
+                    shop now
+                  </button>
+                  {/* <button>shop now</button> */}
                 </div>
               ))}
             </div>
