@@ -44,7 +44,7 @@ function Home() {
       <Slider />
 
       <div className="container">
-        <h2 className="secTitle">CATEGORIES</h2>
+        <h2 className="">Our categories</h2>
         <hr />
         <div className="row">
           <div className="heading">
@@ -63,6 +63,7 @@ function Home() {
             ))}
           </div>
           <Button
+          className="btn1"
             onClick={navigateToCategories}
             style={{ width: 400, justifyContent: "center", margin: "auto" }}
             outline
@@ -78,7 +79,8 @@ function Home() {
       </div>
 
       <div className="container">
-        <h2 className="secTitle">PRODUCTS</h2>
+        <h2 className=""> lastest producats</h2>
+        <p> we have a lateset producat tae a looe and enjoy uyng </p>
         <hr />
         <div className="row">
           <div className="heading">
@@ -92,6 +94,7 @@ function Home() {
             ))}
           </div>
           <Button
+          className="btn1"
             onClick={navigateToProducts}
             style={{ width: 400, justifyContent: "center", margin: "auto" }}
             outline

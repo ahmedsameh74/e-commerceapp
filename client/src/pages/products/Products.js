@@ -41,7 +41,8 @@ function Products() {
     <>
       <Category />
       <div className="show-category">
-        <h1>products</h1>
+        <h1> our products</h1>
+       
         <hr />
         <div className="container">
           <div className="row">
@@ -61,8 +62,11 @@ function Products() {
           </div>
         </div>
       </div>
+     
     </>
+   
   );
+  
 }
 
 export default Products;

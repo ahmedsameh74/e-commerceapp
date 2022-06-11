@@ -2,8 +2,23 @@
     margin: 10px 95px;
     margin-bottom: 60px;
 }
+.container p {
+    text-align: center;
+    color: #0e0d0d;
+    font-size: 17px;
+    margin: 10px;
+}
+ h2 {
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+}
 
 .boxhome {
+    margin: 15px;
     width: 40%;
     min-width: 230px;
     padding: 10px 12px;
@@ -68,6 +83,9 @@
     margin: 10px 0;
     overflow-wrap: anywhere;
 }
+.box button {
+    margin: 15px;
+}
 
 /* .boxhome span{
     font-size: 20px;
@@ -84,6 +102,8 @@
     border-radius: 5%;
 
 }
+.row  .btn1{    display: flex;
+    align-items: center;}
 
 .boxhome button:hover {
     background-color: #e8e8e8;
@@ -96,6 +116,7 @@
     .show-category .container {
         margin: 80px;
     }
+   
 
     .gallerybox {
         padding: 40px 40px;
@@ -130,6 +151,10 @@
     .boxhome button {
         width: 35%;
         margin-top: -50px;
+    }
+    .category-container .show-category {
+        display: flex;
+        margin-bottom: 15px;
     }
 
 }
