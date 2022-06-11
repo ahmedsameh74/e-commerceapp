@@ -11,9 +11,11 @@ import {
 
 function ProductItemDetails() {
   const [data, setData] = useState([]);
+ // const [feed, setFeed]= useState([]);
 
   useEffect(() => {
     apiGet();
+   // apiPost();
   }, []);
 
 
@@ -25,12 +27,25 @@ function ProductItemDetails() {
     await fetch(`${Base_URL}/product/items/item/${id}`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.data);
+       // console.log(json.data);
         setData(json.data);
       });
 
 
   };
+  // const apiPost = async () => {
+
+
+  //   await fetch(`${Base_URL}/feedback/store`)
+  //     .then((response) => response.json())
+  //     .then((json) => {
+  //       console.log(json.feed);
+  //       setFeed(json.feed);
+  //     });
+
+
+  // };
+
   // Products();
 
   return (
