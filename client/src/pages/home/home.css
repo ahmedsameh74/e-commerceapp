@@ -86,6 +86,9 @@
 .box button {
     margin: 15px;
 }
+.box{
+    background-color: #0e0d0d;
+}
 
 /* .boxhome span{
     font-size: 20px;

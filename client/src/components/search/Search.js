@@ -14,7 +14,7 @@ function Search(){
     const [filter, setFilter] = useState([]);
     const [categoriesdata, setCategoriesData] = useState([]);
     const [data, setData] = useState([]);
-    // Const[isSearching, setIsSearching] =useState(false)
+    const[isSearching, setIsSearching] =useState(false)
 
     useEffect(() => {
       //apiGet();
@@ -23,7 +23,7 @@ function Search(){
   
 const searchText = (event) =>{
     setFilter(event.target.value);
-    // useState(true)
+    setIsSearching(true)
 }
 let searchData = data.filter(item => {
     return Object.keys(item).some(key =>
@@ -60,6 +60,7 @@ const apiGetCategories = async () => {
 
 return(
     <>
+
      <div className="search">
          <input type="text" 
          className="tex"
@@ -69,6 +70,9 @@ return(
            onChange ={searchText.bind(this)}
          />
          </div> 
+         {isSearching?        
+         
+         <div>
          <div className="category-container">
 
 <div className="show-category"> { search.map((res) =>(
@@ -102,7 +106,8 @@ onClick={() => navigate(`/products/${res.id}`)}
               ))
             }
         
-            </div>
+            </div> </div>: <div></div>}
+  
           
   </>
 )

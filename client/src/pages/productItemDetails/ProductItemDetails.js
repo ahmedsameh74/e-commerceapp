@@ -13,6 +13,9 @@ function ProductItemDetails() {
   const [data, setData] = useState([]);
   const [feed, setFeed]= useState([]);
 
+  const { addToCart, newCart } = useCart();
+  const { cart } = useCartContext();
+
   useEffect(() => {
     apiGet();
     apiPost();
@@ -33,6 +36,7 @@ function ProductItemDetails() {
 
 
   };
+
   const apiPost = async () => {
 
 
@@ -44,6 +48,30 @@ function ProductItemDetails() {
       });
 
 
+  // console.log(cart);
+  const handleAddToCart = (res) => {
+    addToCart(res);
+    console.log(res);
+    console.log(newCart)
+
+    // if (cart.length === 0) {
+    //   cart.push(res);
+    //   console.log(cart);
+    // } else {
+    //   cart.forEach((item) => {
+    //     if (item.id !== res.id) {
+    //       cart.push(res);
+    //       console.log(cart);
+    //     } else if (item.id === res.id) {
+    //       console.log("exist");
+    //     }
+    //   });
+    //   // for (let i = 0; i < cart.length; i++) {
+    //   //   cart[i].id !== res.id
+    //   //     ? cart.push(res) && console.log(cart)
+    //   //     : alert("exist");
+    //   // }
+    // }
   };
 
   // Products();
