@@ -15,13 +15,13 @@ function ProductItemDetails() {
   const { user } = useAuthContext();
   const [feedBack, setfeedBack] = useState(null);
   const { addToCart } = useCart();
-  const { cart } = useCartContext();
+  // const { cart } = useCartContext();
   // console.log(user);
 
   const handelSubmit = (e) => {
     e.preventDefault();
     setfeedBack(feed);
-    console.log(feedBack);
+    // console.log(feedBack);
     apiPost();
   };
 
@@ -53,7 +53,7 @@ function ProductItemDetails() {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
+        // console.log(json);
         if (json.success === "Feedback added successfully") {
           console.log("success");
         } else {
@@ -144,7 +144,7 @@ function ProductItemDetails() {
             <div className="col-sm-6">
               <label
                 className="visually-hidden"
-                htmlfor="specificSizeInputName"
+                htmlFor="specificSizeInputName"
               >
                 your feedback
               </label>

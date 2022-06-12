@@ -25,7 +25,7 @@ function Home() {
     await fetch(`${Base_URL}/categories`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.data);
+        // console.log(json.data);
         setCategoriesData([json.data[0], json.data[1]]);
       });
   };
@@ -34,7 +34,7 @@ function Home() {
     await fetch(`${Base_URL}/allproducts`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.data);
+        // console.log(json.data);
         setProductsData([json.data[0], json.data[1], json.data[2]]);
       });
   };

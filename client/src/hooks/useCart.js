@@ -3,7 +3,7 @@ import { useCartContext } from "./useCartContext";
 
 export const useCart = () => {
   const { dispatch, cart } = useCartContext();
-let newCart=[];
+  let newCart = [];
   const addToCart = (res) => {
     console.log(res.id);
     newCart = [...cart];
@@ -18,7 +18,8 @@ let newCart=[];
         // console.log(res);
         item.product_id !== res.product_id
           ? newCart.push(res)
-          : newCart.splice(newCart.indexOf(item),1, {...res});
+          : // : newCart.splice(newCart.indexOf(item),1, {...res});
+            console.log("already exist");
       });
       console.log(newCart);
     }
@@ -26,6 +27,4 @@ let newCart=[];
   };
 
   return { addToCart };
-
 };
-
