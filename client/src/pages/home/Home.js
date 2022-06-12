@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Base_URL } from "../../service/BaseUrl";
 import { useNavigate } from "react-router-dom";
-
+ 
 import "./home.css";
 import { Button } from "reactstrap";
 import Slider from "../../components/Slider/Slider";

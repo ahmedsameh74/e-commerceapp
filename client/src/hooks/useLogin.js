@@ -21,9 +21,13 @@ export const useLogin = () => {
         .then((data) => {
           if (data.message === "User login successfully.") {
             console.log("logged in");
-            console.log(data);
+            console.log(data.data.user_id);
             // console.log(email, password);
+<<<<<<< HEAD
             let user = { email, password , userId:data.data.user_id,};
+=======
+            let user = { email, password, userId: data.data.user_id };
+>>>>>>> 0beda9152f017158b24a11ec2649d4562e39d5a3
             // console.log(user);
             dispatch({ type: "LOGIN", payload: user });
             setError(null);
