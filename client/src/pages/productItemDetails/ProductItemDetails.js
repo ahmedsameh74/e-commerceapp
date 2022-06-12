@@ -27,7 +27,7 @@ function ProductItemDetails() {
 
   useEffect(() => {
     apiGet();
-    apiPost();
+    // apiPost();
   }, []);
 
   let { id } = useParams();
@@ -118,7 +118,7 @@ function ProductItemDetails() {
             <div className="detailsContainerSec2">
               <h3>Add QUANTITY</h3>
 
-              <div class="input-group">
+              <div className="input-group">
                 <span className="input-group-text"></span>
                 <textarea
                   className="form-control"
@@ -138,11 +138,14 @@ function ProductItemDetails() {
           </div>
 
           <form
-            class="row gx-3 gy-2 align-items-center"
+            className="row gx-3 gy-2 align-items-center"
             // onSubmit={handelSubmit}
           >
-            <div class="col-sm-6">
-              <label class="visually-hidden" for="specificSizeInputName">
+            <div className="col-sm-6">
+              <label
+                className="visually-hidden"
+                htmlfor="specificSizeInputName"
+              >
                 your feedback
               </label>
               <textarea
@@ -152,7 +155,7 @@ function ProductItemDetails() {
               ></textarea>
               {/* <input  onChange= {(e)=>setFeed(e.target.value)} type="text" class="form-control" id="specificSizeInputName" placeholder="write somthing"/> */}
             </div>
-            <div class="col-sm-3">
+            <div className="col-sm-3">
               <button
                 type="button"
                 className="btn btn-dark px-4 py-2"

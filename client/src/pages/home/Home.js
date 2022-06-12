@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Base_URL } from "../../service/BaseUrl";
 import { useNavigate } from "react-router-dom";
- 
+
 import "./home.css";
 import { Button } from "reactstrap";
 import Slider from "../../components/Slider/Slider";
@@ -63,7 +63,7 @@ function Home() {
             ))}
           </div>
           <Button
-          className="btn1"
+            className="btn1"
             onClick={navigateToCategories}
             style={{ width: 400, justifyContent: "center", margin: "auto" }}
             outline
@@ -85,7 +85,7 @@ function Home() {
         <div className="row">
           <div className="heading">
             {productsdata.map((res) => (
-              <div className="box">
+              <div className="box" key={res.id}>
                 <h2 className="btn-box">{res.name}</h2>
                 <img src={res.product_image} alt={res.name}></img>
                 <p>{res.product_disc}</p>
@@ -96,7 +96,7 @@ function Home() {
             ))}
           </div>
           <Button
-          className="btn1"
+            className="btn1"
             onClick={navigateToProducts}
             style={{ width: 400, justifyContent: "center", margin: "auto" }}
             outline
