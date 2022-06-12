@@ -26,6 +26,4 @@ export const useCart = () => {
     dispatch({ type: "ADD_TO_CART", payload: newCart });
   };
   return { addToCart };
-
-  // return { addToCart };
-};
+}
