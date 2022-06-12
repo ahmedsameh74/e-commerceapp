@@ -11,12 +11,12 @@ import { useAuthContext } from "./../../hooks/useAuthContext";
 function ProductItemDetails() {
   const [data, setData] = useState([]);
   const [feed, setFeed] = useState([]);
-  const [userFeed, setUserFeed] = useState([]);
+  // const [userFeed, setUserFeed] = useState([]);
   const { user } = useAuthContext();
   const [feedBack, setfeedBack] = useState(null);
   const { addToCart } = useCart();
   const { cart } = useCartContext();
-  console.log(user);
+  // console.log(user);
 
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -139,7 +139,7 @@ function ProductItemDetails() {
 
           <form
             class="row gx-3 gy-2 align-items-center"
-            onSubmit={handelSubmit}
+            // onSubmit={handelSubmit}
           >
             <div class="col-sm-6">
               <label class="visually-hidden" for="specificSizeInputName">
@@ -153,7 +153,11 @@ function ProductItemDetails() {
               {/* <input  onChange= {(e)=>setFeed(e.target.value)} type="text" class="form-control" id="specificSizeInputName" placeholder="write somthing"/> */}
             </div>
             <div class="col-sm-3">
-              <button type="button" className="btn btn-dark px-4 py-2">
+              <button
+                type="button"
+                className="btn btn-dark px-4 py-2"
+                onClick={handelSubmit}
+              >
                 {" "}
                 submit
               </button>
