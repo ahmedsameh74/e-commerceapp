@@ -6,20 +6,20 @@ export const useCart = () => {
   const { dispatch, cart } = useCartContext();
 
   const addToCart = (res) => {
-    console.log(res.id);
+    // console.log(res.id);
     let newCart = [...cart];
-    console.log(newCart);
+    // console.log(newCart);
     if (newCart.length <= 0) {
-      newCart.push(res);
-      console.log(newCart);
+      newCart.push({ ...res });
+      // console.log(newCart);
     } else {
       newCart.forEach((item) => {
         // console.log(item);
         // console.log(item.id);
         // console.log(res);
         item.product_id !== res.product_id
-          ? newCart.push(res)
-          : newCart.splice(item.product_id.indexOf(res.product_id), 0);
+          ? newCart.push({ ...res })
+          : newCart.splice(newCart.indexOf(item), 1, { ...res });
       });
       console.log(newCart);
     }
