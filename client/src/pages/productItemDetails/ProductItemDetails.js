@@ -25,14 +25,29 @@ function ProductItemDetails() {
         setData(json.data);
       });
   };
+  // console.log(cart);
   const handleAddToCart = (res) => {
-    if (cart.length === 0) {
-      cart.push(res);
-    } else {
-      cart.forEach((item) => {
-        item.id !== res.id ? cart.push(res) : console.log("first");
-      });
-    }
+    addToCart(res);
+    console.log(res);
+
+    // if (cart.length === 0) {
+    //   cart.push(res);
+    //   console.log(cart);
+    // } else {
+    //   cart.forEach((item) => {
+    //     if (item.id !== res.id) {
+    //       cart.push(res);
+    //       console.log(cart);
+    //     } else if (item.id === res.id) {
+    //       console.log("exist");
+    //     }
+    //   });
+    //   // for (let i = 0; i < cart.length; i++) {
+    //   //   cart[i].id !== res.id
+    //   //     ? cart.push(res) && console.log(cart)
+    //   //     : alert("exist");
+    //   // }
+    // }
   };
   // Products();
 

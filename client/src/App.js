@@ -25,7 +25,7 @@ library.add(fab);
 function App() {
   const { user } = useAuthContext();
   // const navigate = useNavigate();
-  console.log(user);
+  // console.log(user);
   // user ? navigate("/login") : navigate("/");
   return (
     <div className="App">
