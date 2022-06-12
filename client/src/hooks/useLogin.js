@@ -23,7 +23,7 @@ export const useLogin = () => {
             console.log("logged in");
             console.log(data);
             // console.log(email, password);
-            let user = { email, password };
+            let user = { email, password , userId:data.data.user_id,};
             // console.log(user);
             dispatch({ type: "LOGIN", payload: user });
             setError(null);
