@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { Base_URL } from "../service/BaseUrl";
+import { useNavigate } from "react-router";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const login = async (email, password) => {
     setError(null);
@@ -26,6 +28,7 @@ export const useLogin = () => {
             let user = { email, password, userId: data.data.user_id };
             // console.log(user);
             dispatch({ type: "LOGIN", payload: user });
+            navigate("/");
             setError(null);
           } else {
             setError("you must sign up first");
