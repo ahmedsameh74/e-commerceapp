@@ -4,10 +4,12 @@ import { Base_URL } from "../../service/BaseUrl";
 import { useCart } from "../../hooks/useCart";
 import "./ProductItemDetails.css";
 import { useParams } from "react-router-dom";
+import { useCartContext } from "./../../hooks/useCartContext";
 
 function ProductItemDetails() {
   const [data, setData] = useState([]);
   const { addToCart } = useCart();
+  const { cart } = useCartContext();
 
   useEffect(() => {
     apiGet();
@@ -24,7 +26,13 @@ function ProductItemDetails() {
       });
   };
   const handleAddToCart = (res) => {
-    addToCart(res);
+    if (cart.length === 0) {
+      cart.push(res);
+    } else {
+      cart.forEach((item) => {
+        item.id !== res.id ? cart.push(res) : console.log("first");
+      });
+    }
   };
   // Products();
 

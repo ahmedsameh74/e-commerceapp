@@ -13,7 +13,7 @@ export const cartReducer = (state, action) => {
 
 export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {
-    cart: null,
+    cart: [],
   });
   console.log(state);
 

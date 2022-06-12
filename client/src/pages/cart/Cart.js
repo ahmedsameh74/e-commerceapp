@@ -4,8 +4,8 @@ import { useAuthContext } from "./../../hooks/useAuthContext";
 import { useNavigate } from "react-router";
 const Cart = () => {
   const { cart } = useCartContext();
-  const { user } = useAuthContext();
-  const navigate = useNavigate();
+  // const { user } = useAuthContext();
+  // const navigate = useNavigate();
   // !user && navigate("/login");
   // console.log(cart);
   return (
