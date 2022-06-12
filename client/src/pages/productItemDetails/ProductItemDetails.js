@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { Base_URL } from "../../service/BaseUrl";
 
+import { useCart } from "../../hooks/useCart";
+import { useCartContext } from "../../hooks/useCartContext";
 import "./ProductItemDetails.css";
 import {
 
@@ -47,6 +49,7 @@ function ProductItemDetails() {
         setFeed(json.feed);
       });
 
+    }
 
   // console.log(cart);
   const handleAddToCart = (res) => {

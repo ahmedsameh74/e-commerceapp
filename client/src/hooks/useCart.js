@@ -24,8 +24,8 @@ let newCart=[];
     }
     dispatch({ type: "ADD_TO_CART", payload: newCart });
   };
-  return { addToCart, newCart };
->>>>>>> Stashed changes
 
   return { addToCart };
+
 };
+
