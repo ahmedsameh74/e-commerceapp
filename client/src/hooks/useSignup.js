@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { Base_URL } from "../service/BaseUrl";
+import { useNavigate } from "react-router";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const signup = async (user) => {
     setError(null);
@@ -31,6 +33,7 @@ export const useSignup = () => {
             // console.log(user);
             // console.log(user);
             dispatch({ type: "SIGNUP", payload: user });
+            navigate("/");
             setError(null);
           } else {
             setError("sign up again later");

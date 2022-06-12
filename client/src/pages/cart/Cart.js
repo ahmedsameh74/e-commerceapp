@@ -1,8 +1,13 @@
 import "./Cart.css";
 import { useCartContext } from "../../hooks/useCartContext";
+import { useAuthContext } from "./../../hooks/useAuthContext";
+import { useNavigate } from "react-router";
 const Cart = () => {
   const { cart } = useCartContext();
-  console.log(cart);
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  // !user && navigate("/login");
+  // console.log(cart);
   return (
     <div className="outerContainer">
       <div className="mainContainer">

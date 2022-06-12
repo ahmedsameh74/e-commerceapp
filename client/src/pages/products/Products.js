@@ -35,16 +35,16 @@ function Products() {
         });
     }
   };
-  const handleAddToCart = (res) => {
-    addToCart(res);
-  };
+  // const handleAddToCart = (res) => {
+  //   addToCart(res);
+  // };
 
   return (
     <>
       <Category />
       <div className="show-category">
         <h1> our products</h1>
-       
+
         <hr />
         <div className="container">
           <div className="row">
@@ -55,7 +55,7 @@ function Products() {
                   <img src={res.product_image} alt={res.name}></img>
                   <p>{res.product_disc}</p>
                   {/* test */}
-                  <button onClick={() => handleAddToCart(res)}>+</button>
+                  {/* <button onClick={() => handleAddToCart(res)}>+</button> */}
                   {/* test */}
                   <button onClick={() => navigate(`/productItems/${res.id}`)}>
                     shop now
@@ -67,11 +67,8 @@ function Products() {
           </div>
         </div>
       </div>
-     
     </>
-   
   );
-  
 }
 
 export default Products;
