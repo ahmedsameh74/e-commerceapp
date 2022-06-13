@@ -261,7 +261,7 @@ function ProductItemDetails() {
               className="row gx-3 gy-2 align-items-center"
               onSubmit={handelSubmit}
             >
-              <div class="col-sm-6">
+              <div className="col-sm-6">
                 <label
                   className="visually-hidden"
                   htmlFor="specificSizeInputName"
