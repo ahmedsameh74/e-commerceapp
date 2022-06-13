@@ -11,73 +11,82 @@ import {
 
 function ProductItemDetails() {
   const [data, setData] = useState([]);
-  const [feed, setFeed]= useState([]);
-  const [userFeed, setUserFeed]= useState([]);
-  const {user}= useAuthContext();
-  const [feedBack, setfeedBack]= useState(null);
+  const [feed, setFeed] = useState("");
+  const [itemFeedbacks, setItemFeedbacks] = useState([]);
+  const { user } = useAuthContext();
   let { id } = useParams();
-  console.log(user.userId);
- // console.log(feed);
- //onsole.log(user);
- // console.log(id);
-   
-const  handelSubmit= (e)=>{
-   e.preventDefault();
-   setfeedBack(feed);
-   console.log(feedBack);
-   apiPost();
-}
+  //console.log(user.userId);
+  // console.log(feed);
+  //console.log(user);
+  // console.log(id);
+
+  const handelSubmit = (e) => {
+    // setfeedBack(feed);
+    //console.log(feed);
+
+    apiPost(feed);
+
+    e.preventDefault();
+    e.target[0].value = "";
+  }
 
 
   useEffect(() => {
     apiGet();
     apiGetFeedBck();
-   // apiPost();
   }, []);
 
 
-  
+
 
   const apiGet = async () => {
-
-
     await fetch(`${Base_URL}/product/items/item/${id}`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.data);
+        //console.log(json.data);
         setData(json.data);
       });
-
-
   };
 
   const apiGetFeedBck = async () => {
-
-
-    await fetch(`${Base_URL}/feedback/${user.userId}`)
+    await fetch(`${Base_URL}/feedback/${id}`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
-       setUserFeed(json.userFeed);
+        //console.log(json);
+        setItemFeedbacks(json);
       });
-
-
   };
-  const apiPost = async () => {
-    await fetch(`${Base_URL}/feedback/store`,{method:"POST",body:JSON.stringify({feedback:feedBack,user_id:user.userId, item_id:id}),headers: { "Content-Type": "application/json" },})
+
+
+  const apiPost = async (newfeedback) => {
+    await fetch(`${Base_URL}/feedback/store`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          feedback: newfeedback,
+          user_id: user.userId,
+          item_id: id
+        }),
+        headers: { "Content-Type": "application/json" },
+      })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-      if(json.success ==="Feedback added successfully"){
-           console.log("success");
-      }else{
-        console.log("error");
-      }
+        if (json.success === "Feedback added successfully") {
+          alert('your feedback sent successfully');
+          setFeed("");
+          console.log("success");
+          apiGetFeedBck();
+        } else {
+          console.log("error");
+        }
         setFeed(json.feed);
       });
 
-     
+
   };
+
+
 
   // Products();
 
@@ -96,37 +105,20 @@ const  handelSubmit= (e)=>{
               <h5 className="itemDetailStyle">QUANTITY :  <span style={{ color: "#165BAA" }}>{data.qty}</span></h5>
             </div>
             <div className="detailsContainerSec2">
-              <h5>Add QUANTITY</h5>
-              
-  <div class="input-group">
-  <span className="input-group-text"></span>
-  {/* <textarea className="form-control" aria-label="With textarea"></textarea> */}
-  <input  onChange= {(e)=>setFeed(e.target.value)} type="text" class="form-control" id="specificSizeInputName" placeholder="write quantity"/>
-</div>
-<hr></hr>
-<div>
-<i class="fa-solid fa-cart-circle-arrow-up"></i>
-<button type="button" className="btn btn-outline-dark px-4 py-2">Add To Cart</button>
-</div>
+              {/* <h5>Add QUANTITY</h5> */}
+
+              <div style={{marginBottom:15, height:"50px"}} class="input-group">
+                <input style={{textAlign:"center"}} onChange={(e) => setFeed(e.target.value)} type="number" class="form-control" id="specificSizeInputName" placeholder="add quantity" />
+              </div>
+              <div style={{margin:"auto" , width:"120px"}}>
+                <button style={{margin:"auto" , height:"40px"}} type="button" className="btn btn-outline-dark ">Add To Cart</button>
+              </div>
             </div>
           </div>
 
-          <h2 className="secTitle">Feedbacks</h2>
-          <form class="row gx-3 gy-2 align-items-center" onSubmit={handelSubmit}>
-   <div class="col-sm-6">
-    <label class="visually-hidden" for="specificSizeInputName">your feedback</label>
-    <textarea onChange= {(e)=>setFeed(e.target.value)} className="form-control" aria-label="With textarea"></textarea>
-    {/* <input  onChange= {(e)=>setFeed(e.target.value)} type="text" class="form-control" id="specificSizeInputName" placeholder="write somthing"/> */}
-  </div>
-  <div class="col-sm-3">
-   <button type="button" className="btn btn-dark px-4 py-2"> submit</button>
-  </div>
- 
- 
-</form>
           <hr />
           {/* <h5 style={{marginTop:40,marginBottom:40}} className="secTitle">Feedbacks of customer will add here</h5> */}
-          <p style={{marginTop:40,marginBottom:40}}> </p>
+          <p style={{ marginTop: 40, marginBottom: 40 }}> </p>
           <h4 className="secTitle">ITEM IMAGES</h4>
           <hr />
           <div className="row">
@@ -149,6 +141,51 @@ const  handelSubmit= (e)=>{
               </div>
             </div>
           </div>
+          <hr />
+
+
+          <div className="feedBackContainer">
+            <h2 className="secTitle">Feedbacks</h2>
+            <hr />
+
+
+            <table style={{ margin: 'auto', textAlign: "center", borderWidth: 2, borderColor: "#333", width: 900 }}>
+              <thead style={{backgroundColor:"rgb(21 90 169)",color:"#eee"}}>
+                <th style={{ textAlign: "center", borderWidth: 2, borderColor: "#333",padding:10 }}>Date</th>
+                <th style={{ textAlign: "center", borderWidth: 2, borderColor: "#333",padding:10  }}>Feedback</th>
+              </thead>
+              <tbody>
+
+                {itemFeedbacks.map((res, index) => (
+
+                  <tr style={{backgroundColor:"rgb(196 213 233)",color:"#333"}} key={index}>
+                    <td style={{ textAlign: "center", borderWidth: 2, borderColor: "#333",padding:10 }}>{res.created_at.split("T")[0]}</td>
+                    <td style={{ textAlign: "center", borderWidth: 2, borderColor: "#333",padding:10  }}>{res.feedback}</td>
+                  </tr>
+
+
+                ))}
+              </tbody>
+            </table>
+
+            <h2 className="secTitle">Add Your Feedback</h2>
+            <hr />
+
+            <form style={{ justifyContent: "end",marginTop:10,borderWidth:1 }} class="row gx-3 gy-2 align-items-center" onSubmit={handelSubmit}>
+              <div class="col-sm-6">
+                <label class="visually-hidden" for="specificSizeInputName">your feedback</label>
+                <textarea value={feed} name="feedInput" onChange={(e) => setFeed(e.target.value)} className="form-control" aria-label="With textarea"></textarea>
+                {/* <input  onChange= {(e)=>setFeed(e.target.value)} type="text" class="form-control" id="specificSizeInputName" placeholder="write somthing"/> */}
+              </div>
+              <div class="col-sm-3">
+                <button type="submit" name="submit" className="btn btn-dark px-4 py-2"> Add </button>
+              </div>
+
+
+            </form>
+          </div>
+
+
         </div>
       </div>
     </>

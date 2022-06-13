@@ -51,7 +51,7 @@ function Products() {
           <div className="row">
             <div className="heading">
               {data.map((res) => (
-                <div className="box">
+                <div key={res.id} className="box">
                   <h2 className="itemTitle">{res.name}</h2>
                   <img src={res.product_image}></img>
                   <p>{res.product_disc}</p>

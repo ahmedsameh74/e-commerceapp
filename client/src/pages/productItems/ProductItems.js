@@ -43,7 +43,7 @@ function ProductItems() {
           <div className="row">
             <div className="heading">
               {data.map((res) => (
-                <div className="box">
+                <div key={res.id} className="box">
                   <img src={"http://ecommerce-2.s3-website-us-east-1.amazonaws.com/"+res.image1}/>
                   <p style={{fontSize:19,fontWeight:"bold"}}>{res.sku}</p>
                   <p style={{fontSize:19,fontWeight:"bold"}}>{res.stock_status}</p>
