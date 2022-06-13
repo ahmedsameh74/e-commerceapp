@@ -13,6 +13,7 @@ function ProductItemDetails() {
   const { user } = useAuthContext();
   let { id } = useParams();
   const { addToCart } = useCart();
+  const { quantity, setQuantity } = useState(null);
   //console.log(user.userId);
   // console.log(feed);
   //console.log(user);
@@ -82,8 +83,8 @@ function ProductItemDetails() {
       });
   };
   const handleAddToCart = () => {
-    // console.log(data);
-    addToCart(data);
+    console.log(data, quantity);
+    addToCart(data, quantity);
   };
 
   // Products();
@@ -121,7 +122,7 @@ function ProductItemDetails() {
               >
                 <input
                   style={{ textAlign: "center" }}
-                  onChange={(e) => setFeed(e.target.value)}
+                  onChange={(e) => setQuantity(e.target.value)}
                   type="number"
                   className="form-control"
                   id="specificSizeInputName"
