@@ -22,6 +22,9 @@ function ProductItemDetails() {
     if (!user) {
       alert("please login first");
     }
+    if (feed === "") {
+      alert("enter your feedback then submit");
+    }
 
     apiPost(feed);
 
