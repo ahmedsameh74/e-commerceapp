@@ -25,9 +25,16 @@ export const useLogin = () => {
             console.log("logged in");
             console.log(data.data.user_id);
             // console.log(email, password);
-            let user = { email, password, userId: data.data.user_id };
+            let user = {
+              email,
+              password,
+              userId: data.data.user_id,
+              token: data.data.token,
+            };
             // console.log(user);
+            console.log(data);
             dispatch({ type: "LOGIN", payload: user });
+            localStorage.setItem("token", data.data.token);
             navigate("/");
             setError(null);
           } else {

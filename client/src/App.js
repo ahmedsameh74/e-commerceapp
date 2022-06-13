@@ -25,7 +25,8 @@ import { useNavigate } from "react-router";
 library.add(fab);
 function App() {
   const { user } = useAuthContext();
-  // console.log(user);
+  const token = localStorage.getItem("token");
+  console.log(token);
   return (
     <div className="App">
       <BrowserRouter>

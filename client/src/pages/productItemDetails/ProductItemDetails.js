@@ -18,11 +18,13 @@ function ProductItemDetails() {
   // const { cart } = useCartContext();
   // console.log(user);
 
-  const handelSubmit = (e) => {
-    e.preventDefault();
+  const handelSubmit = function (e) {
+    // console.log(e.target.value);
+    console.log(feed);
     setfeedBack(feed);
     // console.log(feedBack);
     apiPost();
+    e.preventDefault();
   };
 
   useEffect(() => {
@@ -45,7 +47,7 @@ function ProductItemDetails() {
     await fetch(`${Base_URL}/feedback/store`, {
       method: "POST",
       body: JSON.stringify({
-        feedback: feedBack,
+        feedback: feed,
         user_id: user.userId,
         item_id: id,
       }),
@@ -53,7 +55,7 @@ function ProductItemDetails() {
     })
       .then((response) => response.json())
       .then((json) => {
-        // console.log(json);
+        console.log(json);
         if (json.success === "Feedback added successfully") {
           console.log("success");
         } else {
@@ -66,7 +68,7 @@ function ProductItemDetails() {
   // console.log(cart);
   const handleAddToCart = (res) => {
     addToCart(res);
-    console.log(res);
+    // console.log(res);
     // console.log(newCart);
 
     // if (cart.length === 0) {
@@ -140,6 +142,7 @@ function ProductItemDetails() {
           <form
             className="row gx-3 gy-2 align-items-center"
             // onSubmit={handelSubmit}
+            onSubmit={handelSubmit}
           >
             <div className="col-sm-6">
               <label
@@ -156,14 +159,14 @@ function ProductItemDetails() {
               {/* <input  onChange= {(e)=>setFeed(e.target.value)} type="text" class="form-control" id="specificSizeInputName" placeholder="write somthing"/> */}
             </div>
             <div className="col-sm-3">
-              <button
-                type="button"
+              <input
+                type="submit"
                 className="btn btn-dark px-4 py-2"
-                onClick={handelSubmit}
-              >
-                {" "}
+                value="submit"
+              />
+              {/* {" "}
                 submit
-              </button>
+              </input> */}
             </div>
           </form>
 
