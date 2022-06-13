@@ -21,12 +21,19 @@ import Cart from "./pages/cart/Cart";
 import ProductItemDetails from "./pages/productItemDetails/ProductItemDetails";
 
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 library.add(fab);
 function App() {
-  const { user } = useAuthContext();
-  const token = localStorage.getItem("token");
-  console.log(token);
+  const { user, dispatch } = useAuthContext();
+  const logged = localStorage.getItem("user");
+
+  useEffect(() => {
+    if (logged) {
+      dispatch({ type: "LOGIN", payload: logged });
+    }
+  }, [logged]);
+
   return (
     <div className="App">
       <BrowserRouter>

@@ -11,6 +11,7 @@ export const useLogout = () => {
     setError(null);
     try {
       dispatch({ type: "LOGOUT" });
+      localStorage.clear();
       navigate("/login");
     } catch (err) {
       console.log(err.message);

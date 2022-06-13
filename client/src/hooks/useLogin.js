@@ -34,7 +34,7 @@ export const useLogin = () => {
             // console.log(user);
             console.log(data);
             dispatch({ type: "LOGIN", payload: user });
-            localStorage.setItem("token", data.data.token);
+            localStorage.setItem("user", user);
             navigate("/");
             setError(null);
           } else {
