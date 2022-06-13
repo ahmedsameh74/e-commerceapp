@@ -1,41 +1,49 @@
 import { useState } from "react";
 import { useCartContext } from "./useCartContext";
 
+let newCart = [];
 export const useCart = () => {
   const { dispatch, cart } = useCartContext();
-  let newCart = [];
+
   const addToCart = (res) => {
-    console.log(res.id);
-    newCart = [...cart];
-    let shoppingCart = [];
+    console.log(res);
+    newCart = [...cart, res];
+    let isExist = true;
+    // let shoppingCart = [];
     // console.log(newCart);
-    if (shoppingCart.length <= 0) {
-      newCart = [...cart, res];
-      shoppingCart = newCart;
-      console.log(shoppingCart);
-    } else {
-      newCart.forEach((item) => {
-        // console.log(item);
-        // console.log(item.product_id);
-        // console.log(res.product_id);
-
-        item.product_id !== res.product_id
-          ? (shoppingCart = [...cart, res])
-          : // : newCart.splice(newCart.indexOf(item),1, {...res});
-            console.log("already exist");
-      });
-      // newCart.map((item) => {
-      //   item.id !== res.id
-      //     ? (shoppingCart = [...cart, res])
-      //     : console.log("exist");
-      // });
-      console.log(shoppingCart);
-
-      // console.log(newCart);
+    isExist = newCart.forEach((item) => {
+      if (item.id !== res.id) {
+        return false;
+      }
+    });
+    if (isExist === true) {
+      newCart.push(res);
     }
-    // let shoppingCart = newCart.filter((item) => item.id !== res.id)
+
+    // if (newCart.length <= 0) {
+    //   newCart = [...cart, res];
+    // shoppingCart = newCart;
     // console.log(shoppingCart);
-    dispatch({ type: "ADD_TO_CART", payload: shoppingCart });
+    // } else {
+    // newCart.forEach((item) => {
+    //   // console.log(item);
+    //   // console.log(item.product_id);
+    //   // console.log(res.product_id);
+
+    //   item.product_id !== res.product_id
+    //     ? newCart = [...cart, res]
+    //     : // : newCart.splice(newCart.indexOf(item),1, {...res});
+    //       console.log("already exist");
+    // });
+
+    console.log(newCart);
+
+    // console.log(newCart);
+    // }
+    // let shoppingCart = [...newCart];
+    // let cartT = shoppingCart.filter((item) => );
+    // console.log(cartT);
+    dispatch({ type: "ADD_TO_CART", payload: newCart });
   };
 
   return { addToCart };
