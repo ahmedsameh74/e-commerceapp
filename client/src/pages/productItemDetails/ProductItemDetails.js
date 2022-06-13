@@ -4,6 +4,7 @@ import { Base_URL } from "../../service/BaseUrl";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import "./ProductItemDetails.css";
 import { useParams } from "react-router-dom";
+import { useCart } from "./../../hooks/useCart";
 
 function ProductItemDetails() {
   const [data, setData] = useState([]);
@@ -11,6 +12,7 @@ function ProductItemDetails() {
   const [itemFeedbacks, setItemFeedbacks] = useState([]);
   const { user } = useAuthContext();
   let { id } = useParams();
+  const { addToCart } = useCart();
   //console.log(user.userId);
   // console.log(feed);
   //console.log(user);
@@ -79,6 +81,10 @@ function ProductItemDetails() {
         setFeed(json.feed);
       });
   };
+  const handleAddToCart = () => {
+    // console.log(data);
+    addToCart(data);
+  };
 
   // Products();
 
@@ -127,6 +133,7 @@ function ProductItemDetails() {
                   style={{ margin: "auto", height: "40px" }}
                   type="button"
                   className="btn btn-outline-dark "
+                  onClick={handleAddToCart}
                 >
                   Add To Cart
                 </button>
