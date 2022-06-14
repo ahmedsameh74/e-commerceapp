@@ -91,11 +91,11 @@ const Checkout = () => {
         <div className="inputs">
 
         <label>Card Holder Name</label>
-        <input value={card.name} onChange={(e)=>{setCard({...card, name:e.target.value})}} type='text'/>
+        <input value={card.name} onChange={(e)=>{setCard({...card, name:e.target.value})}} type='text' required/>
         </div>
         <div className="inputs">
         <label>Card Number</label>
-        <input value={card.number} onChange={(e)=>{setCard({...card, number:e.target.value})}} type = 'number'/>
+        <input value={card.number} onChange={(e)=>{setCard({...card, number:e.target.value})}} type = 'number' required/>
         </div> </div>}
         
 
