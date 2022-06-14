@@ -1,6 +1,9 @@
 import "./Cart.css";
 import { useCartContext } from "../../hooks/useCartContext";
 import { useState } from 'react';
+import { Navigate } from "react-router";
+import Checkout from "../checkout/checkout";
+import { Link } from "react-router-dom";
 const Cart = () => {
   const { cart } = useCartContext();
   const [total_price, setTotalPrice] = useState(0);
@@ -59,10 +62,11 @@ const Cart = () => {
             <p>${t_p - t_tax}</p>
           </div>
         </div>
-
+<Link to='/checkout'>
         <div className="btnContainer">
           <button className="btn btn-outline-dark ">Checkout</button>
         </div>
+        </Link>
       </div>
     </div>
   );
