@@ -14,6 +14,7 @@ function ProductItemDetails() {
   let { id } = useParams();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(null);
+  // console.log(JSON(user));
   //console.log(user.userId);
   // console.log(feed);
   //console.log(user);

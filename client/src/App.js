@@ -26,13 +26,14 @@ import { useEffect } from "react";
 library.add(fab);
 function App() {
   const { user, dispatch } = useAuthContext();
-  const logged = localStorage.getItem("user");
+  const logged = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
+    // console.log(user);
     if (logged) {
       dispatch({ type: "LOGIN", payload: logged });
     }
-  }, [logged]);
+  }, []);
 
   return (
     <div className="App">
