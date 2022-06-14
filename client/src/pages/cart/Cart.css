@@ -46,3 +46,9 @@ h6,
 p {
     margin: 0;
 }
+
+.cartScroll{
+    max-height: 200px;
+    overflow-y: scroll;
+    /* max-width: 100px; */
+}

@@ -11,15 +11,19 @@ function ProductItemDetails() {
   const [feed, setFeed] = useState("");
   const [itemFeedbacks, setItemFeedbacks] = useState([]);
   const { user } = useAuthContext();
+
+
   let { id } = useParams();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(null);
   //console.log(user.userId);
   // console.log(feed);
-  //console.log(user);
   // console.log(id);
+  // console.log("new cart from details",cart)
 
   const handelSubmit = (e) => {
+    //console.log(user);
+
     // setfeedBack(feed);
     //console.log(feed);
     if (!user) {
@@ -53,12 +57,23 @@ function ProductItemDetails() {
     await fetch(`${Base_URL}/feedback/${id}`)
       .then((response) => response.json())
       .then((json) => {
-        //console.log(json);
-        setItemFeedbacks(json);
+        console.log(json);
+        if (json.message === 'feedbacks is empty for this item') {
+          setItemFeedbacks([]);
+
+        } else {
+          setItemFeedbacks(json);
+
+        }
       });
   };
 
   const apiPost = async (newfeedback) => {
+    console.log("feedback: ", newfeedback);
+    console.log("user_id: ", user.userId);
+
+    console.log("item_id: ", id);
+
     await fetch(`${Base_URL}/feedback/store`, {
       method: "POST",
       body: JSON.stringify({
@@ -83,8 +98,13 @@ function ProductItemDetails() {
       });
   };
   const handleAddToCart = () => {
-    console.log(data, quantity);
-    addToCart(data, quantity);
+    //console.log(data, quantity);
+    //addToCart(data, quantity);
+
+    addToCart(data, quantity)
+    alert('item added to cart,show your cart form more details');
+    setQuantity(0);
+
   };
 
   // Products();
@@ -124,6 +144,7 @@ function ProductItemDetails() {
                   style={{ textAlign: "center" }}
                   onChange={(e) => setQuantity(e.target.value)}
                   type="number"
+                  value={quantity}
                   className="form-control"
                   id="specificSizeInputName"
                   placeholder="add quantity"

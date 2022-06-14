@@ -5,9 +5,12 @@ let newCart = [];
 export const useCart = () => {
   const { dispatch, cart } = useCartContext();
 
-  const addToCart = (res) => {
-    console.log(res);
-    newCart = [...cart, res];
+  const addToCart = (res,q) => {
+    console.log("item : ",res);
+    console.log("qty : ",q);
+    let newOrderItem = res;
+    newOrderItem.ordQty =q;
+    newCart = [...cart, newOrderItem];
     let isExist = true;
     // let shoppingCart = [];
     // console.log(newCart);
@@ -36,7 +39,7 @@ export const useCart = () => {
     //       console.log("already exist");
     // });
 
-    console.log(newCart);
+    //console.log("newCart : ",newCart);
 
     // console.log(newCart);
     // }
