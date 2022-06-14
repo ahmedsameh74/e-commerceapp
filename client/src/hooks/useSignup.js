@@ -28,6 +28,12 @@ export const useSignup = () => {
           if (data.success) {
             console.log("continue to home page");
             console.log(data);
+            let user = {
+              email: data.data.email,
+              password: data.data.password,
+              userId: data.data.user_id,
+              token: data.data.token,
+            };
             // console.log(email, password);
 
             // console.log(user);
