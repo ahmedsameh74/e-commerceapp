@@ -12,7 +12,7 @@ import Home from "./pages/home/Home";
 import Categories from "./pages/categories/Categories";
 import ProductItems from "./pages/productItems/ProductItems";
 import { useAuthContext } from "./hooks/useAuthContext";
-import Search from "./components/search/Search";
+// import Search from "./components/search/Search";
 import Cart from "./pages/cart/Cart";
 // import Category from "./components/Category/Category";
 // import Data from "./db.json";
@@ -39,8 +39,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Nav />
-
-        <Search />
 
         {/* <div>{Data.username}</div> */}
         <Routes>
