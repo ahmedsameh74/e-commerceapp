@@ -14,7 +14,7 @@ function ProductItemDetails() {
 
   let { id } = useParams();
   const { addToCart } = useCart();
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState("");
   // console.log(JSON(user));
   //console.log(user.userId);
   // console.log(feed);
@@ -230,26 +230,30 @@ function ProductItemDetails() {
               <thead
                 style={{ backgroundColor: "rgb(21 90 169)", color: "#eee" }}
               >
-                <th
-                  style={{
-                    textAlign: "center",
-                    borderWidth: 2,
-                    borderColor: "#333",
-                    padding: 10,
-                  }}
-                >
-                  Date
-                </th>
-                <th
-                  style={{
-                    textAlign: "center",
-                    borderWidth: 2,
-                    borderColor: "#333",
-                    padding: 10,
-                  }}
-                >
-                  Feedback
-                </th>
+                <tr>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      borderWidth: 2,
+                      borderColor: "#333",
+                      padding: 10,
+                    }}
+                  >
+                    Date
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      borderWidth: 2,
+                      borderColor: "#333",
+                      padding: 10,
+                    }}
+                  >
+                    Feedback
+                  </th>
+                </tr>
               </thead>
               <tbody>
                 {itemFeedbacks.map((res, index) => (
