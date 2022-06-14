@@ -33,6 +33,7 @@ export const useSignup = () => {
             // console.log(user);
             // console.log(user);
             dispatch({ type: "SIGNUP", payload: user });
+            localStorage.setItem("user", JSON.stringify(user));
             navigate("/");
             setError(null);
           } else {
