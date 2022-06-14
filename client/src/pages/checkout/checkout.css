@@ -48,3 +48,18 @@
     height: 50px;
     margin-bottom: 20px;
 }
+.creditContainer{
+    margin: 20px 0;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: black;
+    padding: 30px;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+.creditContainer input, .creditContainer label{
+   margin: 20px;
+}

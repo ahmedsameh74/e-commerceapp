@@ -4,7 +4,10 @@ import { useCartContext } from "../../hooks/useCartContext";
 import { useAuthContext } from "./../../hooks/useAuthContext";
 const Checkout = () => {
   const [chosenOption, setOption] = useState("");
-  const [userData, setUserData] = useState({});
+  const [card, setCard]= useState({
+    name:'',
+    number:''
+  })
   const [error, setError] = useState("");
   const handleChange = (event) => {
     setOption(event.target.value);
@@ -13,7 +16,6 @@ const Checkout = () => {
   const { user } = useAuthContext();
 
   const { cart } = useCartContext();
-  const [total_price, setTotalPrice] = useState(0);
   var t_p = 0;
   var t_tax = 0;
 
@@ -38,12 +40,12 @@ const Checkout = () => {
           method: "POST",
           body: JSON.stringify({
             duration: "2",
-            total_price: total_price,
+            total_price: t_p,
             tax: t_tax,
             coupon_code: "djfhf",
             order_states_id: 1,
             order_payment_type_id: chosenOption,
-            order_visa_card_id: 5487545878,
+            order_visa_card_id: card.number,
             order_user_id: user.userId,
             order_items: { ...cart },
           }),
@@ -71,7 +73,7 @@ const Checkout = () => {
               name="choice1"
               value="cash"
               onChange={handleChange}
-            />{" "}
+            />
             Cash
           </label>
 
@@ -81,18 +83,28 @@ const Checkout = () => {
               name="choice1"
               value="creditCard"
               onChange={handleChange}
-            />{" "}
+            />
             Credit Card
           </label>
         </div>
+        {chosenOption === 'creditCard' && <div className="creditContainer">
+        <div className="inputs">
+
+        <label>Card Holder Name</label>
+        <input value={card.name} onChange={(e)=>{setCard({...card, name:e.target.value})}} type='text'/>
+        </div>
+        <div className="inputs">
+        <label>Card Number</label>
+        <input value={card.number} onChange={(e)=>{setCard({...card, number:e.target.value})}} type = 'number'/>
+        </div> </div>}
+        
+
+        
         <div className="inputContainer">
           <form>
             <div className="inputs">
               <label>Name</label>
               <input
-                onChange={() => {
-                  setUserData({ ...userData });
-                }}
                 type="text"
                 placeholder="eg: Jane Doe"
               />
