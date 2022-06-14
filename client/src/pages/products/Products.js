@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./Products.css";
 import { useParams } from "react-router-dom";
+import Search from "../../components/search/Search";
 
 function Products() {
   const [data, setData] = useState([]);
@@ -38,6 +39,7 @@ function Products() {
   return (
     <>
       <div className="show-category">
+        <Search />
         <h2 className="secTitle">PRODUCTS</h2>
         <hr />
         <div className="container">

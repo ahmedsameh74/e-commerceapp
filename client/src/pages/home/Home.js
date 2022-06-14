@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./home.css";
 import { Button } from "reactstrap";
 import Slider from "../../components/Slider/Slider";
+import Search from "./../../components/search/Search";
 
 function Home() {
   const [productsdata, setProductsData] = useState([]);
@@ -41,6 +42,7 @@ function Home() {
 
   return (
     <div className="show-category">
+      <Search />
       <Slider />
 
       <div className="container">

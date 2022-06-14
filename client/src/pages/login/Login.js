@@ -9,7 +9,9 @@ const isEmailValid = (value) =>
 const isDataValid = (value) => value.trim() !== "";
 
 export default function Login() {
-  // const [error, setError] = useState(false);
+  // const [err, setErr] = useState(false);
+  const [emailErr, setEmailErr] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -17,11 +19,19 @@ export default function Login() {
   const { login, error } = useLogin();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isEmailValid(user.email) || !isDataValid(user.password)) {
+    if (!isEmailValid(user.email)) {
       // setError(true);
+      setPasswordErr(false);
+      setEmailErr(true);
       return;
+    }
+    if (!isDataValid(user.password)) {
+      setPasswordErr(true);
+      setEmailErr(false);
     } else {
       // setError(false);
+      setEmailErr(false);
+      setPasswordErr(false);
       login(user.email, user.password);
       setUser({
         email: "",
@@ -44,7 +54,7 @@ export default function Login() {
               setUser({ ...user, email: event.target.value });
             }}
             value={user.email}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            style={{ outline: emailErr ? "red solid 1px" : "" }}
           />
         </div>
         <div className="formControl">
@@ -57,10 +67,16 @@ export default function Login() {
               setUser({ ...user, password: event.target.value });
             }}
             value={user.password}
-            style={{ outline: error ? "red solid 1px" : "" }}
+            style={{ outline: passwordErr ? "red solid 1px" : "" }}
           />
         </div>
-        {error && <span className="error">{error}</span>}
+        {emailErr && (
+          <span style={{ color: "red" }}>Please enter valid email</span>
+        )}
+        {passwordErr && (
+          <span style={{ color: "red" }}>please enter your password</span>
+        )}
+        {/* {err && <span className="error">Enter your data first</span>} */}
         <span>
           don't have an account? <Link to="/signup">Sign Up</Link>
         </span>

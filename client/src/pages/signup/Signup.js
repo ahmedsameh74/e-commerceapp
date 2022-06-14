@@ -10,7 +10,13 @@ const isDataValid = (value) => value.trim() !== "";
 
 export default function Signup() {
   // const [error, setError] = useState(false);
-  const { signup, error } = useSignup();
+  const { signup } = useSignup();
+  const [emailErr, setEmailErr] = useState(false);
+  const [passErr, setPassErr] = useState(false);
+  const [phoneErr, setPhoneErr] = useState(false);
+  const [nameErr, setNameErr] = useState(false);
+  const [shipErr, setShipErr] = useState(false);
+  const [billErr, setBillErr] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -21,17 +27,52 @@ export default function Signup() {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      !isEmailValid(user.email) ||
-      !isDataValid(user.password) ||
-      !isDataValid(user.phone) ||
-      !isDataValid(user.name) ||
-      !isDataValid(user.shippingAddress) ||
-      !isDataValid(user.billingAddress)
-    ) {
-      // setError(true);
-      return;
-    } else {
+    if (!isDataValid(user.name)) {
+      setEmailErr(false);
+      setPassErr(false);
+      setPhoneErr(false);
+      setNameErr(true);
+    }
+    if (!isEmailValid(user.email)) {
+      setEmailErr(true);
+    }
+    if (!isDataValid(user.password)) {
+      setEmailErr(false);
+      setPassErr(true);
+    }
+    if (!isDataValid(user.phone)) {
+      setEmailErr(false);
+      setPassErr(false);
+      setPhoneErr(true);
+    }
+    if (!isDataValid(user.billingAddress)) {
+      setEmailErr(false);
+      setPassErr(false);
+      setPhoneErr(false);
+      setNameErr(false);
+      setShipErr(false);
+      setBillErr(true);
+    }
+    if (!isDataValid(user.shippingAddress)) {
+      setEmailErr(false);
+      setPassErr(false);
+      setPhoneErr(false);
+      setNameErr(false);
+      setShipErr(true);
+    }
+
+    // if (
+    //   !isEmailValid(user.email) ||
+    //   !isDataValid(user.password) ||
+    //   !isDataValid(user.phone) ||
+    //   !isDataValid(user.name) ||
+    //   !isDataValid(user.shippingAddress) ||
+    //   !isDataValid(user.billingAddress)
+    // ) {
+    //   // setError(true);
+    //   return;
+    // }
+    else {
       // console.log(user);
       // setError(false);
       // console.log(user);
@@ -45,19 +86,25 @@ export default function Signup() {
         shippingAddress: "",
         phone: "",
       });
+      setBillErr(false);
+      setEmailErr(false);
+      setNameErr(false);
+      setPassErr(false);
+      setPhoneErr(false);
+      setShipErr(false);
     }
   };
   return (
     <div className="signup">
       <form onSubmit={handleSubmit}>
         <h2>Signup</h2>
-        {error && <span className="errorMSG">Invalid or missing fields</span>}
+        {/* {error && <span className="errorMSG">Invalid or missing fields</span>} */}
         <div className="formControl">
           <label htmlFor="name">Name</label>
           <input
             type="text"
             name=""
-            style={{ border: error ? "1px solid red " : "" }}
+            style={{ border: nameErr ? "1px solid red " : "" }}
             id="name"
             onChange={(event) => {
               setUser({ ...user, name: event.target.value });
@@ -76,7 +123,7 @@ export default function Signup() {
               setUser({ ...user, email: event.target.value });
             }}
             value={user.email}
-            style={{ border: error ? "1px solid red " : "" }}
+            style={{ border: emailErr ? "1px solid red " : "" }}
             placeholder="example@gmail.com"
           />
         </div>
@@ -90,7 +137,7 @@ export default function Signup() {
               setUser({ ...user, password: event.target.value });
             }}
             value={user.password}
-            style={{ border: error ? "1px solid red " : "" }}
+            style={{ border: passErr ? "1px solid red " : "" }}
             placeholder="********"
           />
         </div>
@@ -104,7 +151,7 @@ export default function Signup() {
               setUser({ ...user, phone: event.target.value });
             }}
             value={user.phone}
-            style={{ border: error ? "1px solid red " : "" }}
+            style={{ border: phoneErr ? "1px solid red " : "" }}
             placeholder="ex: 012345678"
           />
         </div>
@@ -119,7 +166,7 @@ export default function Signup() {
               setUser({ ...user, billingAddress: event.target.value });
             }}
             value={user.billingAddress}
-            style={{ border: error ? "1px solid red " : "" }}
+            style={{ border: billErr ? "1px solid red " : "" }}
             placeholder="Apt, floor no"
           />
         </div>
@@ -133,10 +180,32 @@ export default function Signup() {
               setUser({ ...user, shippingAddress: event.target.value });
             }}
             value={user.shippingAddress}
-            style={{ border: error ? "1px solid red " : "" }}
+            style={{ border: shipErr ? "1px solid red " : "" }}
             placeholder="Apt, floor no"
           />
         </div>
+        {nameErr && (
+          <span style={{ color: "red" }}>please enter your userName</span>
+        )}
+        {emailErr && (
+          <span style={{ color: "red" }}>please enter your email</span>
+        )}
+        {passErr && (
+          <span style={{ color: "red" }}>please enter your password</span>
+        )}
+        {phoneErr && (
+          <span style={{ color: "red" }}>please enter your phone number</span>
+        )}
+        {billErr && (
+          <span style={{ color: "red" }}>
+            please enter your billing address
+          </span>
+        )}
+        {shipErr && (
+          <span style={{ color: "red" }}>
+            please enter your shipping address
+          </span>
+        )}
 
         <span className="registered">
           Already have an account? <Link to="/login">Log In</Link>
