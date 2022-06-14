@@ -12,7 +12,6 @@ function ProductItemDetails() {
   const [itemFeedbacks, setItemFeedbacks] = useState([]);
   const { user } = useAuthContext();
 
-
   let { id } = useParams();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(null);
@@ -59,12 +58,10 @@ function ProductItemDetails() {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        if (json.message === 'feedbacks is empty for this item') {
+        if (json.message === "feedbacks is empty for this item") {
           setItemFeedbacks([]);
-
         } else {
           setItemFeedbacks(json);
-
         }
       });
   };
@@ -101,11 +98,13 @@ function ProductItemDetails() {
   const handleAddToCart = () => {
     //console.log(data, quantity);
     //addToCart(data, quantity);
-
-    addToCart(data, quantity)
-    alert('item added to cart,show your cart form more details');
-    setQuantity(0);
-
+    if (user) {
+      addToCart(data, quantity);
+      alert("item added to cart,show your cart form more details");
+      setQuantity(0);
+    } else {
+      alert("Please login first");
+    }
   };
 
   // Products();
