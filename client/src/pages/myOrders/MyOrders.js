@@ -8,29 +8,33 @@ export default function MyOrders() {
   const [orders, setOrders] = useState([]);
   const [delifered, setDelifered] = useState(null);
   const [stat, setStat] = useState(null);
+  const id = user.userId;
 
   console.log(user);
   console.log(delifered);
   useEffect(() => {
-    getOrders();
-    orders.map((stat) => {
-      if (stat.order_states_id === 1) {
-        setDelifered("in progress");
-        setStat("red");
-      } else {
-        setDelifered("Delifered");
-        setStat("green");
-      }
-    });
-  }, [user.userId]);
+    getOrders(id)
+  }, [id]);
+
+  
 
   const getOrders = async () => {
-    await fetch(`http://ecommerce-app0040.herokuapp.com/api/orders/44`)
+    await fetch(`http://ecommerce-app0040.herokuapp.com/api/orders/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(orders);
         setOrders(data);
-      });
+        data.map((stat) => {
+          if (stat.order_states_id === 1) {
+            setDelifered("in progress");
+            setStat("red");
+          } else {
+            setDelifered("Delifered");
+            setStat("green");
+          }
+        });
+      })
+      
   };
   return (
     <div className="container">
