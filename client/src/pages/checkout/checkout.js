@@ -6,6 +6,9 @@ import { useNavigate } from "react-router";
 const Checkout = () => {
   const [chosenOption, setOption] = useState("");
   const [cop, setCop] = useState("");
+  const [phone, setPhone] = useState('')
+  const [ship, setShip] = useState('')
+  const [bill, setBill] = useState('')
   const [card, setCard] = useState({
     name: "",
     number: "",
@@ -68,7 +71,7 @@ const Checkout = () => {
     } else if (chosenOption === "cash") {
       setError("");
       pay = 1;
-      postCheck(cop, pay);
+      postCheck(cop, pay, phone, ship, bill);
     } else if (chosenOption === "creditCard") {
       if (card.name === "" || card.number === "") {
         setError("this field is required");
@@ -77,13 +80,13 @@ const Checkout = () => {
         console.log(user);
         // console.log(t_tax);
         setError("");
-        postCheck(cop, pay);
+        postCheck(cop, pay, phone, ship, bill);
         // console.log(t_p, t)
         // console.log(car);
       }
     }
   };
-  const postCheck = async (cop, pay) => {
+  const postCheck = async (cop, pay, phone, ship, bill) => {
     try {
       await fetch("http://ecommerce-app0040.herokuapp.com/api/order", {
         method: "POST",
@@ -98,6 +101,9 @@ const Checkout = () => {
           card_number: card.number,
           order_user_id: user.userId,
           order_items: newCart,
+          customer_phone: phone,
+          shipping_address: ship,
+          billing_address: bill
         }),
         headers: { "Content-Type": "application/json" },
       })
@@ -191,11 +197,15 @@ const Checkout = () => {
             </div>
             <div className="inputs">
               <label>Phone</label>
-              <input type="number" placeholder="eg: 012345678" />
+              <input type="text" placeholder="eg: 012345678" onChange={e => setPhone(e.target.value)}/>
             </div>
             <div className="inputs">
-              <label>Address</label>
-              <input type="Address" placeholder="eg: Apt, Building, Street" />
+              <label>Shipping Address</label>
+              <input type="Address" placeholder="eg: Apt, Building, Street" onChange={e => setShip(e.target.value)} />
+            </div>
+            <div className="inputs">
+              <label>Billing Address</label>
+              <input type="Address" placeholder="eg: Apt, Building, Street" onChange={e => setBill(e.target.value)} />
             </div>
           </form>
         </div>

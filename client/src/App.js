@@ -24,6 +24,7 @@ import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import Checkout from "./pages/checkout/checkout";
 import { useCartContext } from "./hooks/useCartContext";
+import MyOrders from "./pages/myOrders/MyOrders";
 
 library.add(fab);
 function App() {
@@ -60,6 +61,7 @@ function App() {
             element={<ProductItemDetails />}
           />
           {cart.length > 0 && <Route path="/checkout" element={<Checkout />} />}
+          {user && <Route path="/orders" element={<MyOrders />} />}
         </Routes>
 
         <Footer />
