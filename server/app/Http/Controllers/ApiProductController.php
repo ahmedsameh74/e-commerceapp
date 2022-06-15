@@ -45,6 +45,7 @@ class ApiProductController extends Controller
                         if (!empty($product->productItems)) {
                             $productitems[] = [
                                 'id' => $item->id,
+                                'name'=>$item->name,
                                 'color' => $item->color,
                                 'price' => $item->price,
                                 'qty' => $item->qty,
