@@ -268,8 +268,7 @@ function ProductItemDetails() {
                   >
                     Date
                   </th>
-                </tr>
-                <tr>
+
                   <th
                     style={{
                       textAlign: "center",
