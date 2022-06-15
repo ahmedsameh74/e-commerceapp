@@ -5,28 +5,22 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import "./ProductItemDetails.css";
 import { useParams } from "react-router-dom";
 import { useCart } from "./../../hooks/useCart";
-
+import LoadingComponent from "../../components/LoadingComponent";
 function ProductItemDetails() {
   const [data, setData] = useState([]);
   const [feed, setFeed] = useState("");
   const [itemFeedbacks, setItemFeedbacks] = useState([]);
   const { user } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+
 
 
   let { id } = useParams();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(null);
-  // console.log(JSON(user));
-  //console.log(user.userId);
-  // console.log(feed);
-  // console.log(id);
-  // console.log("new cart from details",cart)
 
   const handelSubmit = (e) => {
-    //console.log(user);
 
-    // setfeedBack(feed);
-    //console.log(feed);
     if (!user) {
       alert("please login first");
     }
@@ -46,30 +40,45 @@ function ProductItemDetails() {
   }, []);
 
   const apiGet = async () => {
+    setLoading(true);
     await fetch(`${Base_URL}/product/items/item/${id}`)
       .then((response) => response.json())
       .then((json) => {
-        //console.log(json.data);
+        setLoading(false);
         setData(json.data);
-      });
+      })
+      .catch(e => {
+        console.log(e.message);
+        setLoading(false);
+
+      })
   };
 
   const apiGetFeedBck = async () => {
+    setLoading(true);
     await fetch(`${Base_URL}/feedback/${id}`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
         if (json.message === 'feedbacks is empty for this item') {
           setItemFeedbacks([]);
+          setLoading(false);
 
         } else {
           setItemFeedbacks(json);
+          setLoading(false);
 
         }
-      });
+      })
+      .catch(e => {
+        console.log(e.message);
+        setLoading(false);
+
+      })
   };
 
   const apiPost = async (newfeedback) => {
+    setLoading(true);
     console.log("feedback: ", newfeedback);
     console.log("user_id: ", user.userId);
 
@@ -90,25 +99,28 @@ function ProductItemDetails() {
         if (json.success === "Feedback added successfully") {
           alert("your feedback sent successfully");
           setFeed("");
+          setLoading(false);
           console.log("success");
           apiGetFeedBck();
         } else {
           console.log("error");
+          setLoading(false);
         }
         setFeed(json.feed);
-      });
+      })
+      .catch(e => {
+        console.log(e.message);
+        setLoading(false);
+
+      })
   };
   const handleAddToCart = () => {
-    //console.log(data, quantity);
-    //addToCart(data, quantity);
-
     addToCart(data, quantity)
     alert('item added to cart,show your cart form more details');
     setQuantity(0);
 
   };
 
-  // Products();
 
   return (
     <>
@@ -165,6 +177,10 @@ function ProductItemDetails() {
           </div>
 
           <hr />
+          {loading == true
+            ? <LoadingComponent />
+            : true
+          }
           {/* <h5 style={{marginTop:40,marginBottom:40}} className="secTitle">Feedbacks of customer will add here</h5> */}
           <p style={{ marginTop: 40, marginBottom: 40 }}> </p>
           <h4 className="secTitle">ITEM IMAGES</h4>

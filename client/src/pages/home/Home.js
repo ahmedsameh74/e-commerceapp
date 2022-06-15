@@ -7,10 +7,12 @@ import "./home.css";
 import { Button } from "reactstrap";
 import Slider from "../../components/Slider/Slider";
 import Search from "./../../components/search/Search";
+import LoadingComponent from "../../components/LoadingComponent";
 
 function Home() {
   const [productsdata, setProductsData] = useState([]);
   const [categoriesdata, setCategoriesData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const navigateToProducts = () => navigate("/products");
@@ -23,29 +25,52 @@ function Home() {
   }, []);
 
   const apiGetCategories = async () => {
+    setLoading(true);
     await fetch(`${Base_URL}/categories`)
       .then((response) => response.json())
       .then((json) => {
         // console.log(json.data);
+        setLoading(false);
         setCategoriesData([json.data[0], json.data[1]]);
-      });
+      })
+      .catch(e => {
+        console.log(e.message);
+        setLoading(false);
+
+      })
   };
 
   const apiGetProducts = async () => {
+    setLoading(true);
+
     await fetch(`${Base_URL}/allproducts`)
       .then((response) => response.json())
       .then((json) => {
         // console.log(json.data);
+        setLoading(false);
         setProductsData([json.data[0], json.data[1], json.data[2]]);
-      });
+      })
+      .catch(e => {
+        console.log(e.message);
+        setLoading(false);
+
+      })
   };
 
   return (
     <div className="show-category">
+      
+
       <Search />
       <Slider />
 
       <div className="container">
+        {loading == true
+        ?<LoadingComponent />
+        :true
+        }
+      
+
         <h2 className="">Our categories</h2>
         <hr />
         <div className="row">
@@ -79,7 +104,6 @@ function Home() {
           </Button>
         </div>
       </div>
-
       <div className="container">
         <h2 className=""> lastest producats</h2>
         <p> we have a lateset producat tae a looe and enjoy uyng </p>

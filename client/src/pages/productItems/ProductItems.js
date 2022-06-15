@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { Base_URL } from "../../service/BaseUrl";
 import { useNavigate } from "react-router-dom";
-
+import LoadingComponent from "../../components/LoadingComponent";
 import "./ProductItems.css";
 import { useParams } from "react-router-dom";
 
 function ProductItems() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     apiGet();
@@ -16,12 +18,18 @@ function ProductItems() {
   let { id } = useParams();
 
   const apiGet = async () => {
+    setLoading(true);
     await fetch(`${Base_URL}/product/items/${id}`)
       .then((response) => response.json())
       .then((json) => {
-        // console.log(json.data);
+        setLoading(false);
         setData(json.data);
-      });
+      })
+      .catch(e => {
+        console.log(e.message);
+        setLoading(false);
+
+      })
   };
   // Products();
 
@@ -33,6 +41,10 @@ function ProductItems() {
         <div className="container">
           <div className="row">
             <div className="heading">
+              {loading == true
+                ? <LoadingComponent />
+                : true
+              }
               {data.map((res) => (
                 <div className="box" key={res.id}>
                   <img
