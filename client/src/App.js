@@ -22,6 +22,7 @@ import ProductItemDetails from "./pages/productItemDetails/ProductItemDetails";
 
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import Checkout from "./pages/checkout/checkout";
 
 library.add(fab);
 function App() {
@@ -57,6 +58,7 @@ function App() {
             path="/productItemDetails/:id"
             element={<ProductItemDetails />}
           />
+          <Route path="/checkout" element={<Checkout/>}/>
         </Routes>
 
         <Footer />

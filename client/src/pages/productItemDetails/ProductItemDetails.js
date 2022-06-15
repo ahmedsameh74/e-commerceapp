@@ -14,10 +14,14 @@ function ProductItemDetails() {
   const [loading, setLoading] = useState(false);
 
 
-
   let { id } = useParams();
   const { addToCart } = useCart();
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState("");
+  // console.log(JSON(user));
+  //console.log(user.userId);
+  // console.log(feed);
+  // console.log(id);
+  // console.log("new cart from details",cart)
 
   const handelSubmit = (e) => {
 
@@ -60,13 +64,14 @@ function ProductItemDetails() {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        if (json.message === 'feedbacks is empty for this item') {
+        if (json.message === "feedbacks is empty for this item") {
           setItemFeedbacks([]);
           setLoading(false);
 
         } else {
           setItemFeedbacks(json);
           setLoading(false);
+
 
         }
       })
@@ -115,10 +120,15 @@ function ProductItemDetails() {
       })
   };
   const handleAddToCart = () => {
-    addToCart(data, quantity)
-    alert('item added to cart,show your cart form more details');
-    setQuantity(0);
-
+    //console.log(data, quantity);
+    //addToCart(data, quantity);
+    if (user) {
+      addToCart(data, quantity);
+      alert("item added to cart,show your cart form more details");
+      setQuantity(0);
+    } else {
+      alert("Please login first");
+    }
   };
 
 
@@ -247,26 +257,30 @@ function ProductItemDetails() {
               <thead
                 style={{ backgroundColor: "rgb(21 90 169)", color: "#eee" }}
               >
-                <th
-                  style={{
-                    textAlign: "center",
-                    borderWidth: 2,
-                    borderColor: "#333",
-                    padding: 10,
-                  }}
-                >
-                  Date
-                </th>
-                <th
-                  style={{
-                    textAlign: "center",
-                    borderWidth: 2,
-                    borderColor: "#333",
-                    padding: 10,
-                  }}
-                >
-                  Feedback
-                </th>
+                <tr>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      borderWidth: 2,
+                      borderColor: "#333",
+                      padding: 10,
+                    }}
+                  >
+                    Date
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      borderWidth: 2,
+                      borderColor: "#333",
+                      padding: 10,
+                    }}
+                  >
+                    Feedback
+                  </th>
+                </tr>
               </thead>
               <tbody>
                 {itemFeedbacks.map((res, index) => (
