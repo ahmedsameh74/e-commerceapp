@@ -134,70 +134,17 @@ function ProductItemDetails() {
 
   return (
     <>
-      <div className="show-category">
+         <div className="show-category">
         <h2 className="secTitle">PRODUCT ITEM DETAILS</h2>
         <hr />
         <div className="container">
-          <div className="detailsContainer">
-            <div className="detailsContainerSec1">
-              <h5 className="itemDetailStyle">
-                SKU : <span style={{ color: "#165BAA" }}>{data.sku}</span>
-              </h5>
-              <h5 className="itemDetailStyle">
-                COLOR : <span style={{ color: "#165BAA" }}>{data.color}</span>
-              </h5>
-              <h5 className="itemDetailStyle">
-                SIZE : <span style={{ color: "#165BAA" }}>{data.size}</span>
-              </h5>
-              <h5 className="itemDetailStyle">
-                PRICE : <span style={{ color: "#165BAA" }}>{data.price}</span>
-              </h5>
-              <h5 className="itemDetailStyle">
-                QUANTITY : <span style={{ color: "#165BAA" }}>{data.qty}</span>
-              </h5>
-            </div>
-            <div className="detailsContainerSec2">
-              {/* <h5>Add QUANTITY</h5> */}
-
-              <div
-                style={{ marginBottom: 15, height: "50px" }}
-                className="input-group"
-              >
-                <input
-                  style={{ textAlign: "center" }}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  type="number"
-                  value={quantity}
-                  className="form-control"
-                  id="specificSizeInputName"
-                  placeholder="add quantity"
-                />
-              </div>
-              <div style={{ margin: "auto", width: "120px" }}>
-                <button
-                  style={{ margin: "auto", height: "40px" }}
-                  type="button"
-                  className="btn btn-outline-dark "
-                  onClick={handleAddToCart}
-                >
-                  Add To Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <hr />
-          {loading == true
-            ? <LoadingComponent />
-            : true
-          }
-          {/* <h5 style={{marginTop:40,marginBottom:40}} className="secTitle">Feedbacks of customer will add here</h5> */}
-          <p style={{ marginTop: 40, marginBottom: 40 }}> </p>
-          <h4 className="secTitle">ITEM IMAGES</h4>
-          <hr />
+       
+          <div className="test">
+                   
+        
           <div className="row">
-            <div className="heading">
-              <div className="boxImage">
+      
+          <div className="boxImage1">
                 <img
                   src={
                     "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
@@ -205,6 +152,8 @@ function ProductItemDetails() {
                   }
                 />
               </div>
+            <div className="heading1">
+            
               <div className="boxImage">
                 <img
                   src={
@@ -240,10 +189,67 @@ function ProductItemDetails() {
             </div>
           </div>
           <hr />
+          <div className="detailsContainer">
+         
+            <div className="detailsContainerSec1">
+          
+          
+              <h5 className="itemDetailStyle">
+                SKU : <span style={{ color: "#165BAA" }}>{data.sku}</span>
+              </h5>
+              <h5 className="itemDetailStyle">
+                COLOR : <span style={{ color: "#165BAA" }}>{data.color}</span>
+              </h5>
+              <h5 className="itemDetailStyle">
+                SIZE : <span style={{ color: "#165BAA" }}>{data.size}</span>
+              </h5>
+              <h5 className="itemDetailStyle">
+                PRICE : <span style={{ color: "#165BAA" }}>{data.price}</span>
+              </h5>
+              <h5 className="itemDetailStyle">
+                QUANTITY : <span style={{ color: "#165BAA" }}>{data.qty}</span>
+              </h5>
+            </div>
+            <div className="detailsContainerSec2">
+               <h5>Add QUANTITY</h5> 
 
+              <div
+                style={{ marginBottom: 15, height: "50px" }}
+                className="input-group"
+              >
+                <input
+                  style={{ textAlign: "center" }}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  type="number"
+                  value={quantity}
+                  className="form-control"
+                  id="specificSizeInputName"
+                  placeholder="add quantity"
+                />
+              </div>
+              <div style={{ margin: "auto", width: "120px" }}>
+                <button
+                  style={{ margin: "auto", height: "40px" }}
+                  type="button"
+                  className="btn btn-outline-dark "
+                  onClick={handleAddToCart}
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          </div> 
+          </div>
+          <hr />
+          <div className="item-text">
+            <h2>Item details:</h2>
+       <p>lorem ipusem  lorem ipusem lorem ipusem lorem
+          lorem ipusem lorem ipusem lorem ipusem lorem 
+          ipusem lorem ipusem lorem ipusemipusem lorem  <br/>
+          ipusem lorem ipusem lorem ipusem lorem ipusem . </p> </div>
           <div className="feedBackContainer">
-            <h2 className="secTitle">Feedbacks</h2>
-            <hr />
+            <h2 className="secTitle">See item feedbacks</h2>
+            
 
             <table
               style={{
@@ -257,29 +263,26 @@ function ProductItemDetails() {
               <thead
                 style={{ backgroundColor: "rgb(21 90 169)", color: "#eee" }}
               >
-                <tr>
-                  <th
-                    style={{
-                      textAlign: "center",
-                      borderWidth: 2,
-                      borderColor: "#333",
-                      padding: 10,
-                    }}
-                  >
-                    Date
-                  </th>
-
-                  <th
-                    style={{
-                      textAlign: "center",
-                      borderWidth: 2,
-                      borderColor: "#333",
-                      padding: 10,
-                    }}
-                  >
-                    Feedback
-                  </th>
-                </tr>
+                <th
+                  style={{
+                    textAlign: "center",
+                    borderWidth: 2,
+                    borderColor: "#333",
+                    padding: 10,
+                  }}
+                >
+                  Date
+                </th>
+                <th
+                  style={{
+                    textAlign: "center",
+                    borderWidth: 2,
+                    borderColor: "#333",
+                    padding: 10,
+                  }}
+                >
+                  Feedback
+                </th>
               </thead>
               <tbody>
                 {itemFeedbacks.map((res, index) => (
