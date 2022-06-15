@@ -22,7 +22,7 @@ export default function MyOrders() {
         setStat("green");
       }
     });
-  }, []);
+  }, [user.userId]);
 
   const getOrders = async () => {
     await fetch(`http://ecommerce-app0040.herokuapp.com/api/orders/44`)
