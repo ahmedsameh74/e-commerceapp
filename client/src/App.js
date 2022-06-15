@@ -28,6 +28,7 @@ function App() {
   const { user, dispatch } = useAuthContext();
   const logged = JSON.parse(localStorage.getItem("user"));
 
+  
   useEffect(() => {
     // console.log(user);
     if (logged) {
