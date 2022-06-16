@@ -2,9 +2,13 @@ import { useState } from "react";
 import "./checkout.css";
 import { useCartContext } from "../../hooks/useCartContext";
 import { useAuthContext } from "./../../hooks/useAuthContext";
+import { useNavigate } from "react-router";
 const Checkout = () => {
   const [chosenOption, setOption] = useState("");
   const [cop, setCop] = useState("");
+  const [phone, setPhone] = useState('')
+  const [ship, setShip] = useState('')
+  const [bill, setBill] = useState('')
   const [card, setCard] = useState({
     name: "",
     number: "",
@@ -15,8 +19,9 @@ const Checkout = () => {
     console.log(event.target.value);
   };
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
-  const { cart } = useCartContext();
+  const { cart, dispatch } = useCartContext();
   var t_p = 0;
   var t_tax = 0;
 
@@ -25,10 +30,39 @@ const Checkout = () => {
     t_tax = t_tax + cart[i].price * cart[i].ordQty * 0.14;
     console.log(t_p);
   }
-  let newCart = { ...cart[0], name: cart[0].sku };
+  // let newCart = {
+  //   price: cart[0].price,
+  //   qty: cart[0].qty,
+  //   color: cart[0].color,
+  //   sku: cart[0].sku,
+  //   id: cart[0].id,
+  //   name: cart[0].sku,
+  //   size: cart[0].size,
+  // };
+  // let newCart = { ...cart, name: cart.sku };
+  // let newCart = []
+  // cart.forEach((item,i) => {
+  //   newCart.push()
+  // })
+  // console.log(newCart);
   // let cartName = { ...newCart };
+  let newCart = [];
+  cart.forEach((item) =>
+    newCart.push({
+      id: item.id,
+      name: item.sku,
+      sku: item.sku,
+      color: item.color,
+      price: item.price,
+      qty: item.qty,
+      size: item.size,
+    })
+  );
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(cart);
+    console.log(newCart);
+    let pay;
 
     // console.log(chosenOption);
     if (chosenOption === "") {
@@ -36,51 +70,58 @@ const Checkout = () => {
       console.log(card);
     } else if (chosenOption === "cash") {
       setError("");
-      postCheck(cop);
+      pay = 1;
+      postCheck(cop, pay, phone, ship, bill);
     } else if (chosenOption === "creditCard") {
       if (card.name === "" || card.number === "") {
         setError("this field is required");
       } else {
+        pay = 2;
         console.log(user);
-        console.log(t_tax);
+        // console.log(t_tax);
         setError("");
-        postCheck(cop);
+        postCheck(cop, pay, phone, ship, bill);
+        // console.log(t_p, t)
+        // console.log(car);
       }
     }
   };
-  const postCheck = async (cop) => {
+  const postCheck = async (cop, pay, phone, ship, bill) => {
     try {
-      await fetch(
-        "http://ecommerce-app0040.herokuapp.com/api/order?duration=&total_price=&tax=&coupon_code=&order_states_id=&order_payment_type_id=&order_visa_card_id=&order_user_id=&order_items[0][qty]=&order_items[0][price]=&order_items[0][name]=&order_items[0][sku]=&order_items[0][color]=&order_items[0][size]=&order_items[0][id]=",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            duration: "2",
-            total_price: t_p,
-            tax: t_tax,
-            coupon_code: cop,
-            order_states_id: 1,
-            order_payment_type_id: chosenOption,
-            order_visa_card_id: card.number,
-            order_user_id: user.userId,
-            order_items: {
-              newCart,
-            },
-          }),
-          headers: { "Content-Type": "application/json" },
-        }
-      )
+      await fetch("http://ecommerce-app0040.herokuapp.com/api/order", {
+        method: "POST",
+        body: JSON.stringify({
+          duration: "2",
+          total_price: t_p,
+          tax: t_tax,
+          coupon_code: cop,
+          order_states_id: 1,
+          order_payment_type_id: pay,
+          order_visa_card_id: 1,
+          card_number: card.number,
+          order_user_id: user.userId,
+          order_items: newCart,
+          customer_phone: phone,
+          shipping_address: ship,
+          billing_address: bill
+        }),
+        headers: { "Content-Type": "application/json" },
+      })
         .then((res) => res.json())
         .then((data) => {
-          if (data.message.includes("coupon expired")) {
-            console.log("expired");
-          } else {
-            console.log(data);
+          if (data.message.includes("order created successfully")) {
+            alert(
+              "Order Created sucessffully, please check your email for details"
+            );
+            setTimeout(() => {
+              dispatch({ type: "CLEARE" });
+              navigate("/");
+            }, [1000]);
           }
         });
     } catch (err) {
       setError(err.message);
-      console.log(err.message);
+      console.log(err);
     }
   };
   return (
@@ -156,11 +197,15 @@ const Checkout = () => {
             </div>
             <div className="inputs">
               <label>Phone</label>
-              <input type="number" placeholder="eg: 012345678" />
+              <input type="text" placeholder="eg: 012345678" onChange={e => setPhone(e.target.value)}/>
             </div>
             <div className="inputs">
-              <label>Address</label>
-              <input type="Address" placeholder="eg: Apt, Building, Street" />
+              <label>Shipping Address</label>
+              <input type="Address" placeholder="eg: Apt, Building, Street" onChange={e => setShip(e.target.value)} />
+            </div>
+            <div className="inputs">
+              <label>Billing Address</label>
+              <input type="Address" placeholder="eg: Apt, Building, Street" onChange={e => setBill(e.target.value)} />
             </div>
           </form>
         </div>

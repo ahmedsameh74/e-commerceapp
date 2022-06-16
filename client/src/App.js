@@ -23,13 +23,15 @@ import ProductItemDetails from "./pages/productItemDetails/ProductItemDetails";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import Checkout from "./pages/checkout/checkout";
+import { useCartContext } from "./hooks/useCartContext";
+import MyOrders from "./pages/myOrders/MyOrders";
 
 library.add(fab);
 function App() {
   const { user, dispatch } = useAuthContext();
+  const { cart } = useCartContext();
   const logged = JSON.parse(localStorage.getItem("user"));
 
-  
   useEffect(() => {
     // console.log(user);
     if (logged) {
@@ -58,7 +60,8 @@ function App() {
             path="/productItemDetails/:id"
             element={<ProductItemDetails />}
           />
-          <Route path="/checkout" element={<Checkout/>}/>
+          {cart.length > 0 && <Route path="/checkout" element={<Checkout />} />}
+          {user && <Route path="/orders" element={<MyOrders />} />}
         </Routes>
 
         <Footer />

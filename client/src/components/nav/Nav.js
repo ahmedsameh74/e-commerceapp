@@ -67,12 +67,14 @@ export default function Nav() {
                 <Link to="/cart">Cart</Link>
               </li>
             )}
-            <li>
-              {/* <i className="fa-solid fa-address-card"></i> */}
-              <FontAwesomeIcon icon={faAddressCard} />
+            {user && (
+              <li>
+                {/* <i className="fa-solid fa-address-card"></i> */}
+                <FontAwesomeIcon icon={faAddressCard} />
 
-              <Link to="/contact">Contact</Link>
-            </li>
+                <Link to="/orders">Orders</Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="mob-menu">
