@@ -96,128 +96,163 @@ export default function Signup() {
   };
   return (
     <div className="signup">
-      
-      <div className="form-log">
-      <form onSubmit={handleSubmit}>
-        <h2>Signup</h2>
-        {/* {error && <span className="errorMSG">Invalid or missing fields</span>} */}
-        <div className="formControl">
-          <div className="textform">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name=""
-            style={{ border: nameErr ? "1px solid red " : "" }}
-            id="name"
-            onChange={(event) => {
-              setUser({ ...user, name: event.target.value });
-            }}
-            value={user.name}
-            placeholder="ex: Jane Doe"
-          />
-      </div>
-      <div className="textform">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name=""
-            id="email"
-            onChange={(event) => {
-              setUser({ ...user, email: event.target.value });
-            }}
-            value={user.email}
-            style={{ border: emailErr ? "1px solid red " : "" }}
-            placeholder="example@gmail.com"
-          />
-          </div>
-          <div className="textform">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name=""
-            id="password"
-            onChange={(event) => {
-              setUser({ ...user, password: event.target.value });
-            }}
-            value={user.password}
-            style={{ border: passErr ? "1px solid red " : "" }}
-            placeholder="********"
-          />
-          </div>
-          <div className="textform">
-       
-          <label htmlFor="phone">Phone</label>
-          <input
-            type="tel"
-            name=""
-            id="phone"
-            onChange={(event) => {
-              setUser({ ...user, phone: event.target.value });
-            }}
-            value={user.phone}
-            style={{ border: phoneErr ? "1px solid red " : "" }}
-            placeholder="ex: 012345678"
-          />
-          </div>
-          <div className="textform">
-      
-          <label htmlFor="billingAddress">billing Address</label>
-          <input
-            type="text"
-            name=""
-            id="billingAddress"
-            onChange={(event) => {
-              setUser({ ...user, billingAddress: event.target.value });
-            }}
-            value={user.billingAddress}
-            style={{ border: billErr ? "1px solid red " : "" }}
-            placeholder="Apt, floor no"
-          />
-       </div>
-       <div className="textform">
-   
-          <label htmlFor="shippingAddress">Shipping Address</label>
-          <input
-            type="text"
-            name=""
-            id="shippingAddress"
-            onChange={(event) => {
-              setUser({ ...user, shippingAddress: event.target.value });
-            }}
-            value={user.shippingAddress}
-            style={{ border: shipErr ? "1px solid red " : "" }}
-            placeholder="Apt, floor no"
-          />
-           </div>
-        </div>
-        {nameErr && (
-          <span style={{ color: "red" }}>please enter your userName</span>
-        )}
-        {emailErr && (
-          <span style={{ color: "red" }}>please enter your email</span>
-        )}
-        {passErr && (
-          <span style={{ color: "red" }}>please enter your password</span>
-        )}
-        {phoneErr && (
-          <span style={{ color: "red" }}>please enter your phone number</span>
-        )}
-        {billErr && (
-          <span style={{ color: "red" }}>
-            please enter your billing address
-          </span>
-        )}
-        {shipErr && (
-          <span style={{ color: "red" }}>
-            please enter your shipping address
-          </span>
-        )}
 
-        <span className="registered">
-          Already have an account? <Link to="/login">Log In</Link>
-        </span>
-        <button>Submit</button>
-      </form>
+      <div className="form-log">
+        <form onSubmit={handleSubmit}>
+          <h2 style={{ color: "darkkhaki" }}>Signup</h2>
+          {/* {error && <span className="errorMSG">Invalid or missing fields</span>} */}
+          <div className="formControl">
+            <div className="textform">
+              <div>
+                <label htmlFor="name">Name</label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name=""
+                  style={{ border: nameErr ? "1px solid red " : "", borderRadius: 10 }}
+                  id="name"
+                  onChange={(event) => {
+                    setUser({ ...user, name: event.target.value });
+                  }}
+                  value={user.name}
+                  placeholder="ex: Jane Doe"
+                />
+              </div>
+
+            </div>
+            <div className="textform">
+              <div>
+                <label htmlFor="email">Email</label>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  name=""
+                  id="email"
+                  onChange={(event) => {
+                    setUser({ ...user, email: event.target.value });
+                  }}
+                  value={user.email}
+                  style={{ border: emailErr ? "1px solid red " : "", borderRadius: 10 }}
+                  placeholder="example@gmail.com"
+                />
+              </div>
+
+
+            </div>
+            <div className="textform">
+              <div>
+                <label htmlFor="password">Password</label>
+
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name=""
+                  id="password"
+                  onChange={(event) => {
+                    setUser({ ...user, password: event.target.value });
+                  }}
+                  value={user.password}
+                  style={{ border: passErr ? "1px solid red " : "", borderRadius: 10 }}
+                  placeholder="********"
+                />
+              </div>
+
+            </div>
+            <div className="textform">
+              <div>
+                <label htmlFor="phone">Phone</label>
+
+              </div>
+              <div>
+                <input
+                  type="tel"
+                  name=""
+                  id="phone"
+                  onChange={(event) => {
+                    setUser({ ...user, phone: event.target.value });
+                  }}
+                  value={user.phone}
+                  style={{ border: phoneErr ? "1px solid red " : "", borderRadius: 10 }}
+                  placeholder="ex: 012345678"
+                />
+              </div>
+
+            </div>
+            <div className="textform">
+              <div>
+                <label htmlFor="billingAddress">billing Address</label>
+
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name=""
+                  id="billingAddress"
+                  onChange={(event) => {
+                    setUser({ ...user, billingAddress: event.target.value });
+                  }}
+                  value={user.billingAddress}
+                  style={{ border: billErr ? "1px solid red " : "", borderRadius: 10 }}
+                  placeholder="Apt, floor no"
+                />
+              </div>
+
+            </div>
+            <div className="textform">
+
+              <div>
+                <label htmlFor="shippingAddress">Shipping Address</label>
+
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name=""
+                  id="shippingAddress"
+                  onChange={(event) => {
+                    setUser({ ...user, shippingAddress: event.target.value });
+                  }}
+                  value={user.shippingAddress}
+                  style={{ border: shipErr ? "1px solid red " : "", borderRadius: 10 }}
+                  placeholder="Apt, floor no"
+                />
+              </div>
+
+            </div>
+          </div>
+          {nameErr && (
+            <span style={{ color: "red" }}>please enter your userName</span>
+          )}
+          {emailErr && (
+            <span style={{ color: "red" }}>please enter your email</span>
+          )}
+          {passErr && (
+            <span style={{ color: "red" }}>please enter your password</span>
+          )}
+          {phoneErr && (
+            <span style={{ color: "red" }}>please enter your phone number</span>
+          )}
+          {billErr && (
+            <span style={{ color: "red" }}>
+              please enter your billing address
+            </span>
+          )}
+          {shipErr && (
+            <span style={{ color: "red" }}>
+              please enter your shipping address
+            </span>
+          )}
+
+          <span className="registered">
+            Already have an account? <Link style={{ textDecoration: "none", color: "darkkhaki" }} to="/login">Log In</Link>
+          </span>
+          {/* <button>Submit</button> */}
+          <button style={{ backgroundColor: "#eee", padding: 5, borderRadius: 5, width: 100, fontSize: 18, fontWeight: "bold" }}>Submit</button>
+
+        </form>
       </div>
     </div>
   );

@@ -17,11 +17,6 @@ function ProductItemDetails() {
   let { id } = useParams();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState("");
-  // console.log(JSON(user));
-  //console.log(user.userId);
-  // console.log(feed);
-  // console.log(id);
-  // console.log("new cart from details",cart)
 
   const handelSubmit = (e) => {
 
@@ -123,9 +118,16 @@ function ProductItemDetails() {
     //console.log(data, quantity);
     //addToCart(data, quantity);
     if (user) {
-      addToCart(data, quantity);
-      alert("item added to cart,show your cart form more details");
-      setQuantity(0);
+      if (data.qty <= 0) {
+        alert("sorry this item is out of stock ,you can check the availability soon");
+        setQuantity(0);
+
+      } else {
+        addToCart(data, quantity);
+        alert("item added to cart,show your cart form more details");
+        setQuantity(0);
+      }
+
     } else {
       alert("Please login first");
     }
@@ -134,17 +136,17 @@ function ProductItemDetails() {
 
   return (
     <>
-         <div className="show-category">
+      <div className="show-category">
         <h2 className="secTitle">PRODUCT ITEM DETAILS</h2>
         <hr />
         <div className="container">
-       
+
           <div className="test">
-                   
-        
-          <div className="row">
-      
-          <div className="boxImage1">
+
+
+            <div className="row">
+
+              <div className="boxImage1">
                 <img
                   src={
                     "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
@@ -152,104 +154,115 @@ function ProductItemDetails() {
                   }
                 />
               </div>
-            <div className="heading1">
-            
-              <div className="boxImage">
-                <img
-                  src={
-                    "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
-                    data.image2
-                  }
-                />
-              </div>
-              <div className="boxImage">
-                <img
-                  src={
-                    "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
-                    data.image3
-                  }
-                />
-              </div>
-              <div className="boxImage">
-                <img
-                  src={
-                    "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
-                    data.image4
-                  }
-                />
-              </div>
-              <div className="boxImage">
-                <img
-                  src={
-                    "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
-                    data.image5
-                  }
-                />
-              </div>
-            </div>
-          </div>
-          <hr />
-          <div className="detailsContainer">
-         
-            <div className="detailsContainerSec1">
-          
-          
-              <h5 className="itemDetailStyle">
-                SKU : <span style={{ color: "#165BAA" }}>{data.sku}</span>
-              </h5>
-              <h5 className="itemDetailStyle">
-                COLOR : <span style={{ color: "#165BAA" }}>{data.color}</span>
-              </h5>
-              <h5 className="itemDetailStyle">
-                SIZE : <span style={{ color: "#165BAA" }}>{data.size}</span>
-              </h5>
-              <h5 className="itemDetailStyle">
-                PRICE : <span style={{ color: "#165BAA" }}>{data.price}</span>
-              </h5>
-              <h5 className="itemDetailStyle">
-                QUANTITY : <span style={{ color: "#165BAA" }}>{data.qty}</span>
-              </h5>
-            </div>
-            <div className="detailsContainerSec2">
-               <h5>Add QUANTITY</h5> 
+              <div className="heading1">
 
-              <div
-                style={{ marginBottom: 15, height: "50px" }}
-                className="input-group"
-              >
-                <input
-                  style={{ textAlign: "center" }}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  type="number"
-                  value={quantity}
-                  className="form-control"
-                  id="specificSizeInputName"
-                  placeholder="add quantity"
-                />
-              </div>
-              <div style={{ margin: "auto", width: "120px" }}>
-                <button
-                  style={{ margin: "auto", height: "40px" }}
-                  type="button"
-                  className="btn btn-outline-dark "
-                  onClick={handleAddToCart}
-                >
-                  Add To Cart
-                </button>
+                <div className="boxImage">
+                  <img
+                    src={
+                      "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
+                      data.image2
+                    }
+                  />
+                </div>
+                <div className="boxImage">
+                  <img
+                    src={
+                      "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
+                      data.image3
+                    }
+                  />
+                </div>
+                <div className="boxImage">
+                  <img
+                    src={
+                      "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
+                      data.image4
+                    }
+                  />
+                </div>
+                <div className="boxImage">
+                  <img
+                    src={
+                      "http://ecommerce-2.s3-website-us-east-1.amazonaws.com/" +
+                      data.image5
+                    }
+                  />
+                </div>
               </div>
             </div>
-          </div> 
+            <hr />
+            <div className="detailsContainer">
+
+              <div className="detailsContainerSec1">
+
+
+                <h5 className="itemDetailStyle">
+                  SKU : <span style={{ color: "#165BAA" }}>{data.sku}</span>
+                </h5>
+                <h5 className="itemDetailStyle">
+                  COLOR : <span style={{ color: "#165BAA" }}>{data.color}</span>
+                </h5>
+                <h5 className="itemDetailStyle">
+                  SIZE : <span style={{ color: "#165BAA" }}>{data.size}</span>
+                </h5>
+                <h5 className="itemDetailStyle">
+                  PRICE : <span style={{ color: "#165BAA" }}>{data.price}</span>
+                </h5>
+                <h5 className="itemDetailStyle">
+                  QUANTITY : <span style={{ color: "#165BAA" }}>{data.qty}</span>
+                </h5>
+              </div>
+              <div className="detailsContainerSec2">
+                <h5>Add QUANTITY</h5>
+
+                <div
+                  style={{ marginBottom: 15, height: "50px" }}
+                  className="input-group"
+                >
+                  <input
+                    style={{ textAlign: "center" }}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    type="number"
+                    value={quantity}
+                    className="form-control"
+                    id="specificSizeInputName"
+                    placeholder="add quantity"
+                  />
+                </div>
+                <div style={{ margin: "auto", width: "120px" }}>
+                  <button
+                    style={{ margin: "auto", height: "40px" }}
+                    type="button"
+                    className="btn btn-outline-dark "
+                    onClick={handleAddToCart}
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
           <hr />
-          <div className="item-text">
-            <h2>Item details:</h2>
-       <p>lorem ipusem  lorem ipusem lorem ipusem lorem
-          lorem ipusem lorem ipusem lorem ipusem lorem 
-          ipusem lorem ipusem lorem ipusemipusem lorem  <br/>
-          ipusem lorem ipusem lorem ipusem lorem ipusem . </p> </div>
+          <div style={
+            {
+              borderWidth: 2,
+              borderColor: "#000",
+              borderRadius: 10,
+
+              paddingBottom: 5,
+              backgroundColor: "rgb(196 213 233)",
+              alignItems: "center",
+              width: 500,
+              borderStyle: "solid"
+            }
+          } className="item-text">
+            <h4 style={{ textAlign: "center", fontWeight: "bold", backgroundColor: "#000", width: "100%", borderTopRightRadius: 6, borderTopLeftRadius: 6, color: "#eee", padding: 7 }}>DESCRIPTION</h4>
+            {/* <hr style={{borderWidth:2,borderColor:"#000",width:"40%"}} /> */}
+            <p>{data.product_desc} </p>
+          </div>
           <div className="feedBackContainer">
             <h2 className="secTitle">See item feedbacks</h2>
-            
+
 
             <table
               style={{
@@ -261,7 +274,7 @@ function ProductItemDetails() {
               }}
             >
               <thead
-                style={{ backgroundColor: "rgb(21 90 169)", color: "#eee" }}
+                style={{ backgroundColor: "#000", color: "#eee" }}
               >
                 <th
                   style={{

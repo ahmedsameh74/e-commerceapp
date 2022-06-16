@@ -50,5 +50,6 @@ p {
 .cartScroll{
     max-height: 200px;
     overflow-y: scroll;
+    
     /* max-width: 100px; */
 }

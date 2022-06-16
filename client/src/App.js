@@ -25,6 +25,7 @@ import { useEffect } from "react";
 import Checkout from "./pages/checkout/checkout";
 import { useCartContext } from "./hooks/useCartContext";
 import MyOrders from "./pages/myOrders/MyOrders";
+import ThankYou from './pages/thankYou/ThankYou';
 
 library.add(fab);
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/thanks" element={<ThankYou />} />
           {!user && <Route path="/login" element={<Login />} />}
           {!user && <Route path="/signup" element={<Signup />} />}
           <Route path="/products/" element={<Products />} />

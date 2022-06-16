@@ -13,12 +13,14 @@
     box-shadow: 0px 0px 10px #777;
     /* border: 7px solid #606465; */
     position: relative;
+    border-radius: 15px;
    
 }
 .signup .form-log .formControl .textform{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: row;
 }
 
 .signup .form-log form span{display: block; margin-bottom: 5px;}

@@ -97,7 +97,7 @@ function Search() {
                 <h2 className="btn-box">{res.name}</h2>
                 <img src={res.product_image}></img>
                 <p>{res.product_disc}</p>
-                <button>shop now</button>
+                <button >shop now</button>
               </div>
             ))}
           </div>{" "}

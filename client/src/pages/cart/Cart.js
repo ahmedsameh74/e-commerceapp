@@ -19,7 +19,7 @@ const Cart = () => {
   console.log(cart);
   return (
     <div className="outerContainer">
-      <div className="mainContainer">
+      <div  className="mainContainer">
         <div
           style={{
             backgroundColor: "#000",

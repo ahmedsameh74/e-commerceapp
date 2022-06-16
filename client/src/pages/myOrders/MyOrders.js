@@ -16,7 +16,7 @@ export default function MyOrders() {
     getOrders(id)
   }, [id]);
 
-  
+
 
   const getOrders = async () => {
     await fetch(`http://ecommerce-app0040.herokuapp.com/api/orders/${id}`)
@@ -34,20 +34,24 @@ export default function MyOrders() {
           }
         });
       })
-      
+
   };
   return (
-    <div className="container">
+    <div className="containerMyOrder">
       <h3>My Orders</h3>
       {orders &&
         orders.map((item) => (
-          <div className="orderState" key={item.id}>
-            <span>tax: </span>
-            <span>{item.tax}</span>
-            <span>Total Price: </span>
-            <span>{item.total_price}</span>
-            <span>Order State: </span>
-            <span className={stat}>{delifered}</span>
+          <div className="orderState " key={item.id}>
+
+            <div>
+              <span>tax: </span>
+              <span>{item.tax}</span>
+              <span>Total Price: </span>
+              <span>{item.total_price}</span>
+            </div>
+            <div>
+              <span style={{ width: 150, bottom: 0, alignSelf: 'flex-end', float: "left" }} className={stat}>{delifered}</span>
+            </div>
           </div>
         ))}
     </div>

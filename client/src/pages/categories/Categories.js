@@ -39,7 +39,7 @@ function Categories() {
                   {/* <p>{res.product_disc}</p> */}
                   <button
                     style={{ marginTop: 25 }}
-                    onClick={() => navigate(`/product/${res.id}`)}
+                    onClick={() => navigate(`/products/${res.id}`)}
                   >
                     Explore Products
                   </button>

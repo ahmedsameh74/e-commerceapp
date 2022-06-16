@@ -69,12 +69,11 @@ function Home() {
         ?<LoadingComponent />
         :true
         }
-     <h2 className="cat">Our  categories</h2>
-<p className="catpar">phase of lorem pusem lorem ipusem of lorem pusem lorem ipusem</p>
+     <h2 className="cat">LATEST CATEGORIES</h2>
       
       <div className="content">
-      {categoriesdata.map((res) => (
-      <div className="head-img">
+      {categoriesdata.map((res,index) => (
+      <div key={index} className="head-img">
          <img src={res.category_image} alt={res.category_name} />
          <h2 className="item">{res.category_name}</h2>
          <button  onClick={() => navigate(`/products/${res.id}`)}>
@@ -100,15 +99,15 @@ function Home() {
 
       </div>
      </div>
-      <section id="banner" class="section-m1">
-	<h4>repair serviecs</h4>
-	<h2>up to 70% all louse &amp; accassories</h2>
-	<button onClick={navigateToProducts} class="normal">explore more</button>
+      <section id="banner" className="section-m1">
+	{/* <h4>repair serviecs</h4> */}
+	<h2>up to 70% all T-shirts &amp; accassories</h2>
+	<button onClick={navigateToCategories} className="normal">explore more</button>
 </section>
 
    
       <div className="container">
-        <h2 className=""> lastest producats</h2>
+        <h2 className=""> LATEST PRODUCTS</h2>
         <p> we have a lateset producat tae a looe and enjoy uyng </p>
         <hr />
         <div className="row">

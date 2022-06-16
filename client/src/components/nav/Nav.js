@@ -18,25 +18,12 @@ export default function Nav() {
   const [showMenu, setShowMenu] = useState(false);
   const { logout } = useLogout();
   const { user } = useAuthContext();
-  // const handleMenu = (e) => {
-  //   // window.onclick = () => {
-  //   //   if (e.target.tagName === "path" || e.target.tagName === "svg") {
-  //   //     setShowMenu(true);
-  //   //     console.log(showMenu);
-  //   //     console.log(e.target.tagName);
-  //   //   } else {
-  //   //     setShowMenu(!showMenu);
-  //   //   }
-  //   // };
-  //   // setShowMenu(!showMenu);
-  //   console.log(e.target.id);
-  // };
+
   useEffect(() => {
     window.onclick = (e) => {
       e.target.localName === "path" || e.target.localName === "svg"
         ? setShowMenu(!showMenu)
         : setShowMenu(false);
-      // console.log(e.target.localName);
     };
   });
   return (
@@ -44,32 +31,27 @@ export default function Nav() {
       <div className="nav">
         <div className="left">
           <div className="logo">
-            <img src="assest/logo.png" className="img-logo" alt="" />
+            <img src="assest/logo.png" className="img-logo" alt="Dolce Shop" />
           </div>
           <ul>
             <li>
-              {/* <i className="fa-solid fa-house-chimney"></i> */}
               <FontAwesomeIcon icon={faHouse} />
 
-              {/* <FontAwesomeIcon icon="fa-solid fa-house-chimney" /> */}
               <Link to="/">Home</Link>
             </li>
             <li>
-              {/* <i className="fa-solid fa-shop"></i> */}
               <FontAwesomeIcon icon={faShop} />
 
               <Link to="/products">Products</Link>
             </li>
             {user && (
               <li>
-                {/* <i className="fa-solid fa-cart-shopping"></i> */}
                 <FontAwesomeIcon icon={faCartShopping} />
                 <Link to="/cart">Cart</Link>
               </li>
             )}
             {user && (
               <li>
-                {/* <i className="fa-solid fa-address-card"></i> */}
                 <FontAwesomeIcon icon={faAddressCard} />
 
                 <Link to="/orders">Orders</Link>
@@ -78,13 +60,11 @@ export default function Nav() {
           </ul>
         </div>
         <div className="mob-menu">
-          {/* <i className="fa-solid fa-bars"></i> */}
           <FontAwesomeIcon icon={faBars} id="menu" />
         </div>
         {!user && (
           <div className="right">
             <Link className="logLink" to="/login">
-              {/* <i className="fa-solid fa-right-to-bracket"></i> */}
               <FontAwesomeIcon icon={faRightToBracket} />
               <span>log in</span>
             </Link>
@@ -92,7 +72,6 @@ export default function Nav() {
         )}
         {user && (
           <button className="logout" onClick={logout}>
-            {/* <i className="fa-solid fa-right-to-bracket"></i> */}
             <FontAwesomeIcon icon={faRightToBracket} />
             <span>log out</span>
           </button>
@@ -102,19 +81,15 @@ export default function Nav() {
         <div className="mob-list">
           <ul>
             <li>
-              {/* <i className="fa-solid fa-house-chimney"></i> */}
               <Link to="/">Home</Link>
             </li>
             <li>
-              {/* <i className="fa-solid fa-shop"></i> */}
               <Link to="/products">Products</Link>
             </li>
             <li>
-              {/* <i className="fa-solid fa-cart-shopping"></i> */}
               <Link to="/cart">Cart</Link>
             </li>
             <li>
-              {/* <i className="fa-solid fa-address-card"></i> */}
               <Link to="/contact">Contact</Link>
             </li>
           </ul>
