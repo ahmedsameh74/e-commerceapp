@@ -1,4 +1,5 @@
 #  E-Commerce Web Application
+The E-shop Store web application is intended to provide complete solutions for the seller as well as customers
 
 
 
@@ -22,6 +23,13 @@ and you can run this command
 # Deployment Project 
 we deploy the backend using Heroku #
 https://dashboard.heroku.com/
+we deploy project in this repo 
+ > https://github.com/mahmoudramadan0040/EcommerceDeploymentFinal.git
+### AWS
+we use S3 to store any image or files 
+we use RDS from Database and type is mysql 
+
+
 
 
 
