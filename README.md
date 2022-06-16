@@ -1,6 +1,6 @@
 #  E-Commerce Web Application
-The E-shop Store web application is intended to provide complete solutions for the seller as well as customers . user can login and register and c
-
+The E-shop Store web application is intended to provide complete solutions for the seller as well as customers .through a single gateway using the internet.
+user can sign in and sign up  and make order and show category and show product and buy and product item in the system 
 
 ## admin dashboard Link 
  http://ecommerce-app0040.herokuapp.com/admin/login
@@ -45,8 +45,10 @@ https://dashboard.heroku.com/
 we deploy project in this repo 
  > https://github.com/mahmoudramadan0040/EcommerceDeploymentFinal.git
 ### AWS
-we use S3 to store any image or files #
+we use S3 to store any image or files
+
 we use RDS from Database and type is mysql 
+
 
 
 
