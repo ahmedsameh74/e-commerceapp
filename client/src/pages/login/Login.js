@@ -42,8 +42,10 @@ export default function Login() {
 
   return (
     <div className="login">
+        <div className="cart-log"></div>
+      <div className="form-log">
       <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2>Log in</h2>
         <div className="formControl">
           <label htmlFor="email">Email</label>
           <input
@@ -56,8 +58,8 @@ export default function Login() {
             value={user.email}
             style={{ outline: emailErr ? "red solid 1px" : "" }}
           />
-        </div>
-        <div className="formControl">
+       
+       
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -81,7 +83,8 @@ export default function Login() {
           don't have an account? <Link to="/signup">Sign Up</Link>
         </span>
         <button>Submit</button>
-      </form>
+      </form></div>
+    
     </div>
   );
 }

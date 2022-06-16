@@ -31,8 +31,9 @@ export default function Contact() {
   };
   return (
     <div className="contact" onSubmit={handleSubmit}>
-      <h3>Send Us Your Feedback</h3>
+      <h3>We d Love To Know  What You Think </h3>
       <form>
+        <div className="formitem">
         <div className="formGroup">
           <label htmlFor="firstName">First name</label>
           <input
@@ -54,7 +55,9 @@ export default function Contact() {
             value={lastName}
           />
         </div>
+        </div>
         {/* {error && <span>enter your last name to submit</span>} */}
+        <div className="formitem">
         <div className="formGroup">
           <label htmlFor="contact">Contact tel.</label>
           <input
@@ -76,6 +79,8 @@ export default function Contact() {
             value={email}
           />
         </div>
+        </div>
+        
         <div className="formGroup">
           <label htmlFor="review">Your review</label>
           <textarea
@@ -90,7 +95,10 @@ export default function Contact() {
           <label htmlFor="check"> May we contact you? </label>
         </div>
         <div className="formGroupd">
-          <button>submit</button>
+          <button>
+            Send Your Feedback
+          </button>
+          <p>Thanks for Supmitting</p>
         </div>
       </form>
     </div>

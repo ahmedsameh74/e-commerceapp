@@ -96,10 +96,13 @@ export default function Signup() {
   };
   return (
     <div className="signup">
+      
+      <div className="form-log">
       <form onSubmit={handleSubmit}>
         <h2>Signup</h2>
         {/* {error && <span className="errorMSG">Invalid or missing fields</span>} */}
         <div className="formControl">
+          <div className="textform">
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -112,8 +115,8 @@ export default function Signup() {
             value={user.name}
             placeholder="ex: Jane Doe"
           />
-        </div>
-        <div className="formControl">
+      </div>
+      <div className="textform">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -126,8 +129,8 @@ export default function Signup() {
             style={{ border: emailErr ? "1px solid red " : "" }}
             placeholder="example@gmail.com"
           />
-        </div>
-        <div className="formControl">
+          </div>
+          <div className="textform">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -140,8 +143,9 @@ export default function Signup() {
             style={{ border: passErr ? "1px solid red " : "" }}
             placeholder="********"
           />
-        </div>
-        <div className="formControl">
+          </div>
+          <div className="textform">
+       
           <label htmlFor="phone">Phone</label>
           <input
             type="tel"
@@ -154,9 +158,9 @@ export default function Signup() {
             style={{ border: phoneErr ? "1px solid red " : "" }}
             placeholder="ex: 012345678"
           />
-        </div>
-
-        <div className="formControl">
+          </div>
+          <div className="textform">
+      
           <label htmlFor="billingAddress">billing Address</label>
           <input
             type="text"
@@ -169,8 +173,9 @@ export default function Signup() {
             style={{ border: billErr ? "1px solid red " : "" }}
             placeholder="Apt, floor no"
           />
-        </div>
-        <div className="formControl">
+       </div>
+       <div className="textform">
+   
           <label htmlFor="shippingAddress">Shipping Address</label>
           <input
             type="text"
@@ -183,6 +188,7 @@ export default function Signup() {
             style={{ border: shipErr ? "1px solid red " : "" }}
             placeholder="Apt, floor no"
           />
+           </div>
         </div>
         {nameErr && (
           <span style={{ color: "red" }}>please enter your userName</span>
@@ -212,6 +218,7 @@ export default function Signup() {
         </span>
         <button>Submit</button>
       </form>
+      </div>
     </div>
   );
 }

@@ -5,12 +5,13 @@
         align-items: center;
         width: 70%;
         margin: 10% auto;
-        background: black;
+        background-image: linear-gradient(to right, rgb(0 0 0),rgb(35 39 40));
         color: white;
         border-radius: 2%;
 }
 .contact h3{
     margin: 25px;
+    color: aquamarine;
 }
 .contact form{
     display: flex;
@@ -23,12 +24,10 @@
 }
 .contact form input{
     border: 1px solid #777;
-    border-radius: 2px;
+    border-radius: 20px;
     margin-bottom: 10px;
-    padding: 3px;
-    width: 337.400px;
-    height: 21.600px;
-    background-color: white;
+    padding: 10px;
+    background: white;
 }
 .contact form input:focus-visible{
     outline: green solid 2px;
@@ -36,16 +35,18 @@
 .contact form label{
     /* margin-bottom: 10px;
         padding: 0; */
-        margin:  0 12px;
+        margin:  15px 12px;
 
 }
 .formGroup{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
+        margin: 0 5px;
 }
+.contact form .formitem{display: flex;}
 .formGroupc{
     display: flex;
         flex-direction: row;
@@ -56,8 +57,15 @@
         margin-left: auto;
         margin-right: auto;
 }
+.formGroupd{display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+.formGroupd p{color: aquamarine;}
 .contact form .formGroupc input{
     /* justify-content: start; */
+   
     width: auto;
 }
 .formGroupd button{
@@ -67,9 +75,10 @@
     border-radius: 5px;
     margin: 0 auto;
     display: block;
-    /* margin-bottom: 25px; */
+    margin-bottom: 25px;
 
 }
+
 .contact form span {
     color: red;
     text-align: center;
@@ -78,14 +87,14 @@
 }
 .contact form textarea{
         border: 1px solid #777;
-            border-radius: 2px;
+            border-radius: 25px;
             margin-bottom: 10px;
             padding: 0;
             /* width: auto; */
             height: 130px;
             background-color: white;
             resize: none;
-            width: 327.400px;
+            width: 90%;
             padding: 8px;
 }
 .contact form textarea:focus-visible{
@@ -93,13 +102,18 @@
 }
 
 @media (max-width: 750px){
+    .contact form .formitem{flex-direction: column;}
+
     .contact form{
         width: 85%;
+        align-items: center;
     }
     .contact form input {
         width: auto;
     }
-        .contact form textarea{
-            width: auto;
+    .contact form label{
+        align-items: flex-start;
+        
         }
+        .formGroup{align-items: ;}
 }
