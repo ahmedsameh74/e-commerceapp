@@ -20,8 +20,15 @@ function Search() {
   }, []);
 
   const searchText = (event) => {
-    setFilter(event.target.value);
-    setIsSearching(true);
+    console.log(event.target.value.length);
+    if(event.target.value.length > 0){
+      setFilter(event.target.value);
+      setIsSearching(true);
+
+    }else{
+      setFilter([])
+      setIsSearching(false)
+    }
   };
   let searchData = data.filter((item) => {
     return Object.keys(item).some((key) =>
@@ -78,28 +85,32 @@ function Search() {
           <div className="category-container">
             <div className="show-category">
               {" "}
-              {search.map((res) => (
-                <div className="box2">
-                  {" "}
-                  <a
-                    onClick={() => navigate(`/products/${res.id}`)}
-                    className="btn-box"
-                  >
-                    {res.category_name}
-                  </a>
-                </div>
-              ))}
+              {search &&
+                search.map((res) => (
+                  <div className="box2">
+                    {" "}
+                    <a
+                      onClick={() => navigate(`/products/${res.id}`)}
+                      className="btn-box"
+                    >
+                      {res.category_name}
+                    </a>
+                  </div>
+                ))}
             </div>
           </div>
           <div className="heading">
-            {searchData.map((res) => (
-              <div className="box">
-                <h2 className="btn-box">{res.name}</h2>
-                <img src={res.product_image}></img>
-                <p>{res.product_disc}</p>
-                <button >shop now</button>
-              </div>
-            ))}
+            {searchData &&
+              searchData.map((res) => (
+                <div className="box">
+                  <h2 className="btn-box">{res.name}</h2>
+                  <img src={res.product_image}></img>
+                  <p>{res.product_disc}</p>
+                  <button onClick={() => navigate(`/productItems/${res.id}`)}>
+                    shop now
+                  </button>
+                </div>
+              ))}
           </div>{" "}
         </div>
       ) : (
