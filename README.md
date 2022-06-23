@@ -1,6 +1,10 @@
 #  E-Commerce Web Application
 The E-shop Store web application is intended to provide complete solutions for the seller as well as customers .through a single gateway using the internet.
 user can sign in and sign up  and make order and show category and show product and buy and product item in the system 
+## How run Project 
+just run frontend react using this command because the project backend is deployment in heroku <br>
+> cd client 
+> npm run start 
 
 ## admin dashboard Link 
  http://ecommerce-app0040.herokuapp.com/admin/login
