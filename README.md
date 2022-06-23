@@ -5,7 +5,8 @@ user can sign in and sign up  and make order and show category and show product 
 just run frontend react using this command because the project backend is deployment in heroku <br>
 > cd client   <br>
 > npm run start 
-
+<br> the project run in 
+<br> http://localhost:3000
 ## admin dashboard Link 
  http://ecommerce-app0040.herokuapp.com/admin/login
 # vedio Demo for Project 
